@@ -1,0 +1,1 @@
+{"file": "terrain.bin", "dtype": "float32 little-endian", "width": 251, "height": 251, "spacing_m": 80.0, "half_size_m": 10000.0, "layout": "row-major; row 0 = north edge, column 0 = west edge; site at the centre", "z": "metres relative to the site's ground, curvature included (local up); LOLA 80 m DEM, bilinear", "min_m": -4185.80908203125, "max_m": 1.1784452199935913}

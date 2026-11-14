@@ -1,0 +1,625 @@
+{
+ "period": "2026-01-01 to 2028-12-31 UTC, hourly",
+ "site_rule": "grid point nearest to the region centroid with slope < 8 deg (LOLA 80 m)",
+ "metric_notes": {
+  "sun_energy_pct": "time-averaged visible fraction of the solar disk",
+  "sun_any_pct": "time with any part of the Sun above the terrain",
+  "earth_pct": "time Earth's centre is above the terrain (+ mask)",
+  "longest_dark_days": "longest spell with no part of the Sun visible",
+  "flat_horizon": "same Sun/Earth geometry, horizon assumed flat (0 deg)"
+ },
+ "sites": [
+  {
+   "lat": -83.64745,
+   "lon": -68.55665,
+   "ps_km": [
+    -179.481,
+    70.494
+   ],
+   "ground_height_m": 4480.947265625,
+   "slope_deg": 6.128886699676514,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 51.059436668330314,
+      "sun_any_pct": 55.478254257907544,
+      "earth_pct": 83.7515206812652,
+      "sun_and_earth_pct": 44.54455596107056,
+      "longest_dark_days": 22.125,
+      "longest_no_earth_days": 5.416666666666667
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 51.059436668330314,
+      "sun_any_pct": 55.478254257907544,
+      "earth_pct": 75.84017639902676,
+      "sun_and_earth_pct": 39.16894768856448,
+      "longest_dark_days": 22.125,
+      "longest_no_earth_days": 7.416666666666667
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.270697721547094,
+      "sun_any_pct": 51.61952554744526,
+      "earth_pct": 59.23053527980535,
+      "sun_and_earth_pct": 30.459245742092456,
+      "longest_dark_days": 16.625,
+      "longest_no_earth_days": 12.0
+     },
+     "min_earth_margin_deg": 0.00026253304264933774
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 62.95986012059157,
+      "sun_any_pct": 66.71989051094891,
+      "earth_pct": 84.07846715328468,
+      "sun_and_earth_pct": 55.501064476885645,
+      "longest_dark_days": 14.666666666666666,
+      "longest_no_earth_days": 5.416666666666667
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 62.95986012059157,
+      "sun_any_pct": 66.71989051094891,
+      "earth_pct": 76.27737226277372,
+      "sun_and_earth_pct": 50.04942214111922,
+      "longest_dark_days": 14.666666666666666,
+      "longest_no_earth_days": 7.416666666666667
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.270697705846345,
+      "sun_any_pct": 51.61952554744526,
+      "earth_pct": 59.23053527980535,
+      "sun_and_earth_pct": 30.459245742092456,
+      "longest_dark_days": 16.625,
+      "longest_no_earth_days": 12.0
+     },
+     "min_earth_margin_deg": 0.0001811342750022149
+    }
+   },
+   "id": "peak_near_cabeus_b",
+   "region": "Peak Near Cabeus B"
+  },
+  {
+   "lat": -86.78224,
+   "lon": -22.8279,
+   "ps_km": [
+    -37.865,
+    89.954
+   ],
+   "ground_height_m": 1643.517578125,
+   "slope_deg": 6.143956184387207,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 24.912282220702,
+      "sun_any_pct": 26.89324817518248,
+      "earth_pct": 42.16849148418492,
+      "sun_and_earth_pct": 13.80778588807786,
+      "longest_dark_days": 24.458333333333332,
+      "longest_no_earth_days": 16.666666666666668
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 24.912282220702,
+      "sun_any_pct": 26.89324817518248,
+      "earth_pct": 37.0095802919708,
+      "sun_and_earth_pct": 12.393552311435522,
+      "longest_dark_days": 24.458333333333332,
+      "longest_no_earth_days": 18.041666666666668
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.40561840278862,
+      "sun_any_pct": 53.22384428223844,
+      "earth_pct": 62.910583941605836,
+      "sun_and_earth_pct": 33.22308394160584,
+      "longest_dark_days": 18.541666666666668,
+      "longest_no_earth_days": 11.0
+     },
+     "min_earth_margin_deg": 5.5448961118642615e-05
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 28.558929429838987,
+      "sun_any_pct": 30.59990875912409,
+      "earth_pct": 42.491636253041364,
+      "sun_and_earth_pct": 15.324665450121655,
+      "longest_dark_days": 23.5,
+      "longest_no_earth_days": 16.583333333333332
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 28.558929429838987,
+      "sun_any_pct": 30.59990875912409,
+      "earth_pct": 37.33272506082725,
+      "sun_and_earth_pct": 13.765967153284672,
+      "longest_dark_days": 23.5,
+      "longest_no_earth_days": 17.958333333333332
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.405618370443364,
+      "sun_any_pct": 53.22384428223844,
+      "earth_pct": 62.910583941605836,
+      "sun_and_earth_pct": 33.22308394160584,
+      "longest_dark_days": 18.541666666666668,
+      "longest_no_earth_days": 11.0
+     },
+     "min_earth_margin_deg": 0.00043312185379651424
+    }
+   },
+   "id": "haworth",
+   "region": "Haworth"
+  },
+  {
+   "lat": -85.99135,
+   "lon": -0.04843,
+   "ps_km": [
+    -0.103,
+    121.605
+   ],
+   "ground_height_m": 4818.3857421875,
+   "slope_deg": 4.983668327331543,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 51.69442643634582,
+      "sun_any_pct": 55.8926399026764,
+      "earth_pct": 60.53451946472019,
+      "sun_and_earth_pct": 31.573144768856448,
+      "longest_dark_days": 16.125,
+      "longest_no_earth_days": 11.666666666666666
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 51.69442643634582,
+      "sun_any_pct": 55.8926399026764,
+      "earth_pct": 55.75197688564477,
+      "sun_and_earth_pct": 28.463351581508515,
+      "longest_dark_days": 16.125,
+      "longest_no_earth_days": 13.041666666666666
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.39760425570983,
+      "sun_any_pct": 52.604166666666664,
+      "earth_pct": 68.73099148418491,
+      "sun_and_earth_pct": 36.21882603406326,
+      "longest_dark_days": 17.75,
+      "longest_no_earth_days": 9.416666666666666
+     },
+     "min_earth_margin_deg": 0.001508368389769199
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 63.32597382233166,
+      "sun_any_pct": 66.91377737226277,
+      "earth_pct": 67.35477493917274,
+      "sun_and_earth_pct": 42.35477493917275,
+      "longest_dark_days": 13.041666666666666,
+      "longest_no_earth_days": 9.791666666666666
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 63.32597382233166,
+      "sun_any_pct": 66.91377737226277,
+      "earth_pct": 61.97156326034063,
+      "sun_and_earth_pct": 38.210918491484186,
+      "longest_dark_days": 13.041666666666666,
+      "longest_no_earth_days": 11.25
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.397604230430794,
+      "sun_any_pct": 52.604166666666664,
+      "earth_pct": 68.73099148418491,
+      "sun_and_earth_pct": 36.21882603406326,
+      "longest_dark_days": 17.75,
+      "longest_no_earth_days": 9.416666666666666
+     },
+     "min_earth_margin_deg": 0.00021864047445879775
+    }
+   },
+   "id": "malapert_massif",
+   "region": "Malapert Massif"
+  },
+  {
+   "lat": -84.29924,
+   "lon": 30.47961,
+   "ps_km": [
+    87.756,
+    149.101
+   ],
+   "ground_height_m": 5263.54443359375,
+   "slope_deg": 4.873075485229492,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 16.74294907432413,
+      "sun_any_pct": 18.784215328467152,
+      "earth_pct": 52.67639902676399,
+      "sun_and_earth_pct": 14.659367396593673,
+      "longest_dark_days": 115.41666666666667,
+      "longest_no_earth_days": 14.0
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 16.74294907432413,
+      "sun_any_pct": 18.784215328467152,
+      "earth_pct": 47.9014598540146,
+      "sun_and_earth_pct": 13.65571776155718,
+      "longest_dark_days": 115.41666666666667,
+      "longest_no_earth_days": 15.333333333333334
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.36073011598275,
+      "sun_any_pct": 51.87423965936739,
+      "earth_pct": 75.24711070559611,
+      "sun_and_earth_pct": 39.46928223844282,
+      "longest_dark_days": 16.833333333333332,
+      "longest_no_earth_days": 7.916666666666667
+     },
+     "min_earth_margin_deg": 0.00022718779432295833
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 27.65396463849732,
+      "sun_any_pct": 29.03740875912409,
+      "earth_pct": 60.28360705596108,
+      "sun_and_earth_pct": 19.27843673965937,
+      "longest_dark_days": 23.416666666666668,
+      "longest_no_earth_days": 11.833333333333334
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 27.65396463849732,
+      "sun_any_pct": 29.03740875912409,
+      "earth_pct": 55.30717761557178,
+      "sun_and_earth_pct": 17.890815085158152,
+      "longest_dark_days": 23.416666666666668,
+      "longest_no_earth_days": 13.208333333333334
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.36073009860209,
+      "sun_any_pct": 51.87423965936739,
+      "earth_pct": 75.24711070559611,
+      "sun_and_earth_pct": 39.46928223844282,
+      "longest_dark_days": 16.833333333333332,
+      "longest_no_earth_days": 7.916666666666667
+     },
+     "min_earth_margin_deg": 0.0007502158231624811
+    }
+   },
+   "id": "mons_mouton_plateau",
+   "region": "Mons Mouton Plateau"
+  },
+  {
+   "lat": -85.45447,
+   "lon": 31.73112,
+   "ps_km": [
+    72.53,
+    117.294
+   ],
+   "ground_height_m": 6305.59228515625,
+   "slope_deg": 4.333617687225342,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 9.989318510234042,
+      "sun_any_pct": 12.188260340632603,
+      "earth_pct": 44.06934306569343,
+      "sun_and_earth_pct": 8.949209245742093,
+      "longest_dark_days": 175.66666666666666,
+      "longest_no_earth_days": 16.333333333333332
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 9.989318510234042,
+      "sun_any_pct": 12.188260340632603,
+      "earth_pct": 39.260188564476884,
+      "sun_and_earth_pct": 8.47779805352798,
+      "longest_dark_days": 175.66666666666666,
+      "longest_no_earth_days": 17.708333333333332
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.39159190543212,
+      "sun_any_pct": 52.31523722627737,
+      "earth_pct": 68.44966545012166,
+      "sun_and_earth_pct": 36.36329075425791,
+      "longest_dark_days": 17.375,
+      "longest_no_earth_days": 9.666666666666666
+     },
+     "min_earth_margin_deg": 0.0011671470246623628
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 18.646048710170685,
+      "sun_any_pct": 22.69616788321168,
+      "earth_pct": 47.15632603406326,
+      "sun_and_earth_pct": 13.412408759124087,
+      "longest_dark_days": 144.625,
+      "longest_no_earth_days": 15.5
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 18.646048710170685,
+      "sun_any_pct": 22.69616788321168,
+      "earth_pct": 42.43461070559611,
+      "sun_and_earth_pct": 12.214872262773723,
+      "longest_dark_days": 144.625,
+      "longest_no_earth_days": 16.791666666666668
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.391591883364185,
+      "sun_any_pct": 52.31523722627737,
+      "earth_pct": 68.44966545012166,
+      "sun_and_earth_pct": 36.36329075425791,
+      "longest_dark_days": 17.375,
+      "longest_no_earth_days": 9.666666666666666
+     },
+     "min_earth_margin_deg": 0.0014335318837428446
+    }
+   },
+   "id": "mons_mouton",
+   "region": "Mons Mouton"
+  },
+  {
+   "lat": -85.47061,
+   "lon": 37.5866,
+   "ps_km": [
+    83.819,
+    108.894
+   ],
+   "ground_height_m": 6050.1826171875,
+   "slope_deg": 5.057858943939209,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 44.232376373376916,
+      "sun_any_pct": 46.19449513381995,
+      "earth_pct": 48.36146593673966,
+      "sun_and_earth_pct": 23.958333333333336,
+      "longest_dark_days": 15.166666666666666,
+      "longest_no_earth_days": 15.208333333333334
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 44.232376373376916,
+      "sun_any_pct": 46.19449513381995,
+      "earth_pct": 44.11116180048662,
+      "sun_and_earth_pct": 21.852189781021895,
+      "longest_dark_days": 15.166666666666666,
+      "longest_no_earth_days": 16.416666666666668
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.39230318123946,
+      "sun_any_pct": 52.28862530413625,
+      "earth_pct": 66.94799270072993,
+      "sun_and_earth_pct": 35.63716545012166,
+      "longest_dark_days": 17.375,
+      "longest_no_earth_days": 10.083333333333334
+     },
+     "min_earth_margin_deg": 0.0009363439985081712
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 55.32679471293515,
+      "sun_any_pct": 57.95316301703163,
+      "earth_pct": 48.71882603406326,
+      "sun_and_earth_pct": 29.512621654501213,
+      "longest_dark_days": 10.208333333333334,
+      "longest_no_earth_days": 15.083333333333334
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 55.32679471293515,
+      "sun_any_pct": 57.95316301703163,
+      "earth_pct": 44.48372871046229,
+      "sun_and_earth_pct": 26.97308394160584,
+      "longest_dark_days": 10.208333333333334,
+      "longest_no_earth_days": 16.333333333333332
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.39230315912189,
+      "sun_any_pct": 52.28862530413625,
+      "earth_pct": 66.94799270072993,
+      "sun_and_earth_pct": 35.63716545012166,
+      "longest_dark_days": 17.375,
+      "longest_no_earth_days": 10.083333333333334
+     },
+     "min_earth_margin_deg": 0.002755403250137789
+    }
+   },
+   "id": "nobile_rim_1",
+   "region": "Nobile Rim 1"
+  },
+  {
+   "lat": -83.97837,
+   "lon": 58.79356,
+   "ps_km": [
+    156.319,
+    94.694
+   ],
+   "ground_height_m": 1050.7523193359375,
+   "slope_deg": 5.975244045257568,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 41.91116189385121,
+      "sun_any_pct": 42.575273722627735,
+      "earth_pct": 65.32086374695864,
+      "sun_and_earth_pct": 28.292274939172753,
+      "longest_dark_days": 18.125,
+      "longest_no_earth_days": 10.541666666666666
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 41.91116189385121,
+      "sun_any_pct": 42.575273722627735,
+      "earth_pct": 60.00228102189781,
+      "sun_and_earth_pct": 26.15191605839416,
+      "longest_dark_days": 18.125,
+      "longest_no_earth_days": 11.916666666666666
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.34361465021463,
+      "sun_any_pct": 51.77919708029197,
+      "earth_pct": 64.79622871046229,
+      "sun_and_earth_pct": 34.401611922141115,
+      "longest_dark_days": 16.708333333333332,
+      "longest_no_earth_days": 10.833333333333334
+     },
+     "min_earth_margin_deg": 0.0008645050696640313
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 42.51466100119061,
+      "sun_any_pct": 43.16453771289538,
+      "earth_pct": 65.52235401459853,
+      "sun_and_earth_pct": 28.767487834549875,
+      "longest_dark_days": 17.958333333333332,
+      "longest_no_earth_days": 10.458333333333334
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 42.51466100119061,
+      "sun_any_pct": 43.16453771289538,
+      "earth_pct": 60.165754257907544,
+      "sun_and_earth_pct": 26.551094890510953,
+      "longest_dark_days": 17.958333333333332,
+      "longest_no_earth_days": 11.833333333333334
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.343614633771516,
+      "sun_any_pct": 51.77919708029197,
+      "earth_pct": 64.79622871046229,
+      "sun_and_earth_pct": 34.401611922141115,
+      "longest_dark_days": 16.708333333333332,
+      "longest_no_earth_days": 10.833333333333334
+     },
+     "min_earth_margin_deg": 0.0002555056119795951
+    }
+   },
+   "id": "nobile_rim_2",
+   "region": "Nobile Rim 2"
+  },
+  {
+   "lat": -88.28818,
+   "lon": -63.66673,
+   "ps_km": [
+    -46.525,
+    23.028
+   ],
+   "ground_height_m": 226.16864013671875,
+   "slope_deg": 7.55972957611084,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 38.03911954663074,
+      "sun_any_pct": 39.5301094890511,
+      "earth_pct": 51.71076642335767,
+      "sun_and_earth_pct": 21.7191301703163,
+      "longest_dark_days": 20.75,
+      "longest_no_earth_days": 14.25
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 38.03911954663074,
+      "sun_any_pct": 39.5301094890511,
+      "earth_pct": 47.12211070559611,
+      "sun_and_earth_pct": 19.78406326034063,
+      "longest_dark_days": 20.75,
+      "longest_no_earth_days": 15.583333333333334
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.38050524351683,
+      "sun_any_pct": 58.097627737226276,
+      "earth_pct": 52.22019464720194,
+      "sun_and_earth_pct": 28.489963503649633,
+      "longest_dark_days": 22.583333333333332,
+      "longest_no_earth_days": 14.0
+     },
+     "min_earth_margin_deg": 0.0019595694721556423
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 38.79111579189891,
+      "sun_any_pct": 40.400699513381994,
+      "earth_pct": 51.760188564476884,
+      "sun_and_earth_pct": 22.445255474452555,
+      "longest_dark_days": 20.75,
+      "longest_no_earth_days": 14.25
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 38.79111579189891,
+      "sun_any_pct": 40.400699513381994,
+      "earth_pct": 47.163929440389296,
+      "sun_and_earth_pct": 20.45316301703163,
+      "longest_dark_days": 20.75,
+      "longest_no_earth_days": 15.541666666666666
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.38050515441241,
+      "sun_any_pct": 58.097627737226276,
+      "earth_pct": 52.22019464720194,
+      "sun_and_earth_pct": 28.489963503649633,
+      "longest_dark_days": 22.583333333333332,
+      "longest_no_earth_days": 14.0
+     },
+     "min_earth_margin_deg": 0.0010170350569363995
+    }
+   },
+   "id": "de_gerlache_rim_2",
+   "region": "de Gerlache Rim 2"
+  },
+  {
+   "lat": -87.17036,
+   "lon": 125.42891,
+   "ps_km": [
+    69.93,
+    -49.75
+   ],
+   "ground_height_m": -44.68602752685547,
+   "slope_deg": 3.158191680908203,
+   "metrics": {
+    "2m": {
+     "terrain": {
+      "sun_energy_pct": 2.0213603137169347,
+      "sun_any_pct": 2.862682481751825,
+      "earth_pct": 35.88427615571776,
+      "sun_and_earth_pct": 2.3418491484184916,
+      "longest_dark_days": 234.95833333333334,
+      "longest_no_earth_days": 18.583333333333332
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 2.0213603137169347,
+      "sun_any_pct": 2.862682481751825,
+      "earth_pct": 30.35279805352798,
+      "sun_and_earth_pct": 2.068126520681265,
+      "longest_dark_days": 234.95833333333334,
+      "longest_no_earth_days": 20.083333333333332
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.25443142085918,
+      "sun_any_pct": 53.539385644768856,
+      "earth_pct": 40.49954379562044,
+      "sun_and_earth_pct": 22.37302311435523,
+      "longest_dark_days": 19.083333333333332,
+      "longest_no_earth_days": 17.25
+     },
+     "min_earth_margin_deg": 0.0007217949886264563
+    },
+    "10m": {
+     "terrain": {
+      "sun_energy_pct": 2.8400418489748827,
+      "sun_any_pct": 4.368156934306569,
+      "earth_pct": 36.17700729927007,
+      "sun_and_earth_pct": 3.1934306569343067,
+      "longest_dark_days": 234.33333333333334,
+      "longest_no_earth_days": 18.5
+     },
+     "terrain_antenna_1deg": {
+      "sun_energy_pct": 2.8400418489748827,
+      "sun_any_pct": 4.368156934306569,
+      "earth_pct": 30.656934306569344,
+      "sun_and_earth_pct": 2.767639902676399,
+      "longest_dark_days": 234.33333333333334,
+      "longest_no_earth_days": 20.0
+     },
+     "flat_horizon": {
+      "sun_energy_pct": 50.2544313831051,
+      "sun_any_pct": 53.539385644768856,
+      "earth_pct": 40.49954379562044,
+      "sun_and_earth_pct": 22.37302311435523,
+      "longest_dark_days": 19.083333333333332,
+      "longest_no_earth_days": 17.25
+     },
+     "min_earth_margin_deg": 0.0008543839021137867
+    }
+   },
+   "id": "slater_plain",
+   "region": "Slater Plain"
+  }
+ ]
+}
