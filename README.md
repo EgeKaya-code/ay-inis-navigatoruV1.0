@@ -136,7 +136,7 @@ MIT. NASA verileri kamuya açıktır, atıflar yukarıdadır.
 ## Ekip için: nasıl başlanır
 
 1. Repoyu GitHub Desktop ile klonlayın (File → Clone repository → `EgeKaya-code/ay-inis-navigatoruV1.0`).
-2. `arayuz/veri.zip` dosyasını `arayuz/veri/` klasörüne açın (zip'in içindeki dosyalar doğrudan `arayuz/veri/` altına gelmeli). Bu klasör GitHub'a gönderilmez.
+2. `arayuz/veri.zip` dosyasına sağ tıklayıp **Tümünü ayıkla** deyin ve hedef olarak `arayuz` klasörünü seçin; `arayuz/veri/` oluşur. Bu klasör GitHub'a gönderilmez.
 3. `arayuz/BASLAT.bat` ile arayüzü açın: http://localhost:8767
 4. NASA ham verileri (`data/raw/`, ~370 MB) GitHub'da yok; hesapları yeniden çalıştıracaksanız Ege'den ayrıca alın.
 
