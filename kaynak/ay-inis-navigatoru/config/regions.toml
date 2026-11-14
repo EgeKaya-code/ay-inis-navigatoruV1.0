@@ -1,0 +1,93 @@
+# The nine Artemis III candidate regions (NASA, Oct 2024; George et al., LPSC 2026,
+# NTRS 20250011660).
+#
+# lat/lon: centroid of the official region polygon (computed in south polar
+# stereographic metres), from the USGS release:
+#   McClernan 2024, "Down Selected Artemis III Candidate Landing Site
+#   Navigational Grids", doi:10.5066/P1MEQ6UK
+#   file: data/raw/usgs_regions/A3_9regions-lonlat-simplified.geojson
+# The polygons themselves are read from that file (scripts/export_proto.py).
+# anchor: the IAU feature the region is named after (not its location).
+#
+# lat/lon: degrees, planetocentric, +East.
+
+[[region]]
+id = "peak_near_cabeus_b"
+name = "Peak Near Cabeus B"
+anchor = "Cabeus B"
+lat = -83.6375
+lon = -68.7495
+area_km2 = 400
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "haworth"
+name = "Haworth"
+anchor = "Haworth"
+lat = -86.7639
+lon = -22.7770
+area_km2 = 888
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "malapert_massif"
+name = "Malapert Massif"
+anchor = "Mons Malapert"
+lat = -85.9948
+lon = -0.2358
+area_km2 = 441
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "mons_mouton_plateau"
+name = "Mons Mouton Plateau"
+anchor = "Mons Mouton"
+lat = -84.3347
+lon = 30.5923
+area_km2 = 4452
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "mons_mouton"
+name = "Mons Mouton"
+anchor = "Mons Mouton"
+lat = -85.4266
+lon = 31.7428
+area_km2 = 256
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "nobile_rim_1"
+name = "Nobile Rim 1"
+anchor = "Nobile"
+lat = -85.4364
+lon = 37.3470
+area_km2 = 400
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "nobile_rim_2"
+name = "Nobile Rim 2"
+anchor = "Nobile"
+lat = -83.9541
+lon = 58.8215
+area_km2 = 400
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "de_gerlache_rim_2"
+name = "de Gerlache Rim 2"
+anchor = "de Gerlache"
+lat = -88.2300
+lon = -64.6284
+area_km2 = 400
+status = "usgs_polygon_centroid"
+
+[[region]]
+id = "slater_plain"
+name = "Slater Plain"
+anchor = "Slater"
+lat = -87.1637
+lon = 125.5377
+area_km2 = 400
+status = "usgs_polygon_centroid"

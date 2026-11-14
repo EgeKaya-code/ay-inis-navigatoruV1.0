@@ -1,0 +1,260 @@
+{
+ "period_ours": "(2026, 1, 1) to (2044, 8, 1) UTC, hourly (~18.6 years)",
+ "reference": "PGDA product 69, AVGVISIB_*_201608 (Mazarico et al. 2011)",
+ "metric": "fraction of time any part of the disc clears the terrain, percent",
+ "sun_diff_0m": {
+  "mean": -0.38680800440930185,
+  "mean_abs": 2.4298746950870114,
+  "max_abs": 4.231663277835075
+ },
+ "earth_diff_0m": {
+  "mean": -2.1312913249185557,
+  "mean_abs": 4.4036288328995035,
+  "max_abs": 20.43444251264674
+ },
+ "sites": [
+  {
+   "id": "nobile_rim_2",
+   "region": "Nobile Rim 2",
+   "lat": -84.06492107406311,
+   "lon": 59.20207423068636,
+   "nasa_map": "75S_120M",
+   "nasa_sun_pct": [
+    50.584,
+    45.72,
+    53.816
+   ],
+   "nasa_earth_pct": [
+    80.76,
+    68.26,
+    80.85600000000001
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 49.14235548352242,
+     "earth_any_pct": 80.73891262708118
+    },
+    "2m": {
+     "sun_any_pct": 51.61276459898826,
+     "earth_any_pct": 80.76469721526448
+    }
+   }
+  },
+  {
+   "id": "mons_mouton",
+   "region": "Mons Mouton",
+   "lat": -85.40391292651677,
+   "lon": 31.707907242617203,
+   "nasa_map": "85S_060M",
+   "nasa_sun_pct": [
+    59.252,
+    44.712,
+    62.748000000000005
+   ],
+   "nasa_earth_pct": [
+    82.304,
+    60.252,
+    99.952
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 56.405628407249154,
+     "earth_any_pct": 76.55014488482884
+    },
+    "2m": {
+     "sun_any_pct": 68.80187613574972,
+     "earth_any_pct": 99.9508864986985
+    }
+   }
+  },
+  {
+   "id": "malapert_massif",
+   "region": "Malapert Massif",
+   "lat": -85.98792808444391,
+   "lon": 2.067083240149271,
+   "nasa_map": "85S_060M",
+   "nasa_sun_pct": [
+    55.456,
+    52.02,
+    60.436
+   ],
+   "nasa_earth_pct": [
+    87.60000000000001,
+    75.324,
+    89.58
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 55.03781739600216,
+     "earth_any_pct": 84.46785521339817
+    },
+    "2m": {
+     "sun_any_pct": 68.91483718874318,
+     "earth_any_pct": 93.79635086685329
+    }
+   }
+  },
+  {
+   "id": "de_gerlache_rim_2",
+   "region": "de Gerlache Rim 2",
+   "lat": -88.38609787811177,
+   "lon": -68.73555288180076,
+   "nasa_map": "85S_060M",
+   "nasa_sun_pct": [
+    45.744,
+    42.464,
+    61.504
+   ],
+   "nasa_earth_pct": [
+    61.708,
+    54.212,
+    61.812000000000005
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 49.491675261529394,
+     "earth_any_pct": 61.806885712882476
+    },
+    "2m": {
+     "sun_any_pct": 63.089975934384356,
+     "earth_any_pct": 61.81670841314278
+    }
+   }
+  },
+  {
+   "id": "mons_mouton_plateau",
+   "region": "Mons Mouton Plateau",
+   "lat": -84.37474532426573,
+   "lon": 32.00218135267694,
+   "nasa_map": "85S_060M",
+   "nasa_sun_pct": [
+    51.504,
+    45.08,
+    51.7
+   ],
+   "nasa_earth_pct": [
+    80.456,
+    69.44800000000001,
+    94.252
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 51.25362212072099,
+     "earth_any_pct": 89.9458523648151
+    },
+    "2m": {
+     "sun_any_pct": 52.75465350424832,
+     "earth_any_pct": 99.99263297480478
+    }
+   }
+  },
+  {
+   "id": "slater_plain",
+   "region": "Slater Plain",
+   "lat": -87.2558222809148,
+   "lon": 127.58999845803673,
+   "nasa_map": "85S_060M",
+   "nasa_sun_pct": [
+    60.424,
+    50.9,
+    61.252
+   ],
+   "nasa_earth_pct": [
+    48.056000000000004,
+    37.884,
+    49.704
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 62.72408034968813,
+     "earth_any_pct": 48.23559746574333
+    },
+    "2m": {
+     "sun_any_pct": 66.69797652374638,
+     "earth_any_pct": 49.67278129757871
+    }
+   }
+  },
+  {
+   "id": "peak_near_cabeus_b",
+   "region": "Peak Near Cabeus B",
+   "lat": -83.58121808584944,
+   "lon": -68.45578499438314,
+   "nasa_map": "75S_120M",
+   "nasa_sun_pct": [
+    61.436,
+    52.06,
+    62.980000000000004
+   ],
+   "nasa_earth_pct": [
+    96.84400000000001,
+    60.096000000000004,
+    99.532
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 57.204336722164925,
+     "earth_any_pct": 76.40955748735327
+    },
+    "2m": {
+     "sun_any_pct": 66.04783655026768,
+     "earth_any_pct": 99.31179706301262
+    }
+   }
+  },
+  {
+   "id": "nobile_rim_1",
+   "region": "Nobile Rim 1",
+   "lat": -85.24500175669448,
+   "lon": 36.754726413573195,
+   "nasa_map": "85S_060M",
+   "nasa_sun_pct": [
+    63.008,
+    44.828,
+    63.008
+   ],
+   "nasa_earth_pct": [
+    72.372,
+    56.172000000000004,
+    75.26
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 66.15404449683217,
+     "earth_any_pct": 72.82918324247336
+    },
+    "2m": {
+     "sun_any_pct": 68.18979912577969,
+     "earth_any_pct": 75.25293453170276
+    }
+   }
+  },
+  {
+   "id": "haworth",
+   "region": "Haworth",
+   "lat": -86.59998968587206,
+   "lon": -21.292791905960343,
+   "nasa_map": "85S_060M",
+   "nasa_sun_pct": [
+    10.472,
+    0.0,
+    23.908
+   ],
+   "nasa_earth_pct": [
+    29.864,
+    20.324,
+    35.644
+   ],
+   "ours": {
+    "0m": {
+     "sun_any_pct": 6.985167722606944,
+     "earth_any_pct": 29.79838907715731
+    },
+    "2m": {
+     "sun_any_pct": 17.626835617111144,
+     "earth_any_pct": 31.322135455036587
+    }
+   }
+  }
+ ]
+}

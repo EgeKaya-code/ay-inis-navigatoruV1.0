@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ay İniş Navigatörü</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --golge:#222a35;      /* gölge: zemin */
+  --panel:#2a3341;
+  --cizgi:#3a4556;
+  --arazi:#141920;      /* arazi silueti */
+  --regolit:#dcdcd5;    /* ana metin */
+  --soluk:#9aa3ae;
+  --gunes:#f2c14e;      /* Güneş her yerde altın */
+  --dunya:#6fa8dc;      /* Dünya her yerde mavi */
+  --uyari:#e8794a;
+  --r:6px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--golge);color:var(--regolit);
+  font-family:"Barlow","Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.45}
+h1,h2,h3,.kosul,.sayi,button,select,input{font-family:"Barlow Semi Condensed","Barlow","Segoe UI",sans-serif}
+.sayi{font-variant-numeric:tabular-nums}
+button,select,input{font-size:15px;color:var(--regolit);background:var(--panel);border:1px solid var(--cizgi);border-radius:var(--r);padding:6px 10px}
+button{cursor:pointer}
+button:hover{border-color:var(--soluk)}
+:focus-visible{outline:2px solid var(--gunes);outline-offset:2px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 24px;padding:18px 24px 14px}
+header h1{margin:0;font-size:30px;font-weight:700;letter-spacing:.2px;line-height:1}
+header h1 small{display:block;font-size:15px;font-weight:400;color:var(--soluk);margin-top:6px;letter-spacing:0}
+.kosullar{display:flex;flex-wrap:wrap;gap:10px 16px;margin-left:auto;align-items:flex-end}
+.kosul{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--soluk)}
+.ikili{display:flex;border:1px solid var(--cizgi);border-radius:var(--r);overflow:hidden}
+.ikili button{border:0;border-radius:0;background:transparent;padding:6px 12px}
+.ikili button[aria-pressed="true"]{background:var(--regolit);color:var(--golge)}
+
+/* Panorama: sayfanın asıl konusu */
+#ufukKutusu{position:relative;margin:0 24px;border-radius:var(--r);overflow:hidden;background:linear-gradient(#0e131a,#1b2230 70%)}
+#panorama{display:block;width:100%;height:280px}
+#cumle{padding:14px 18px 0;max-width:820px;font-size:17px;line-height:1.4;min-height:62px}
+#cumle b{font-weight:600}
+#yer{position:absolute;right:18px;bottom:12px;font-size:13px;color:var(--soluk);text-align:right}
+.zaman{display:flex;align-items:center;gap:12px;margin:10px 24px 0}
+.zaman input[type=range]{flex:1;accent-color:var(--gunes)}
+#zamanEtiket{min-width:230px;text-align:right}
+
+main{display:grid;grid-template-columns:minmax(300px,360px) 1fr minmax(260px,320px);gap:18px;padding:18px 24px 24px}
+section h2{margin:0 0 10px;font-size:19px;font-weight:600}
+.not{color:var(--soluk);font-size:13px}
+
+/* Rotalar */
+.rota{display:grid;grid-template-columns:1fr auto;gap:2px 10px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--cizgi);border-left:4px solid var(--cizgi);border-radius:var(--r);padding:10px 12px;margin-bottom:8px}
+.rota[aria-current="true"]{border-color:var(--regolit);border-left-color:var(--gunes)}
+.rota .ad{font-weight:600;font-size:16px}
+.rota .tur{color:var(--soluk);font-size:13px}
+.rota .olcu{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:2px 12px;font-size:14px}
+.rota .olcu span{white-space:nowrap}
+.rota .olcu span b{font-weight:600}
+.g{color:var(--gunes)} .d{color:var(--dunya)}
+.rota .kars{font-size:12px;padding:1px 8px;align-self:start;border:1px solid var(--cizgi);border-radius:4px;color:var(--soluk);justify-self:start;margin-top:4px}
+.rota .kars:hover{color:var(--regolit);border-color:var(--soluk)}
+.bolgeSec{width:100%;margin:6px 0 10px}
+#harita{display:block;width:100%;aspect-ratio:1;border-radius:var(--r);background:#000;cursor:crosshair}
+.haritaAlt{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:8px}
+
+/* Şeritler */
+.serit{margin-bottom:12px}
+.serit h3{margin:0 0 4px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;gap:12px}
+.serit h3 span{font-weight:400;color:var(--soluk)}
+.serit canvas{display:block;width:100%;height:46px;background:var(--panel);border-radius:4px;cursor:pointer}
+#seritBatarya{height:90px}
+.ozet{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 16px}
+.ozet div{background:var(--panel);border-radius:var(--r);padding:10px 12px}
+.ozet .sayi{font-size:26px;font-weight:600;line-height:1.1}
+.ozet .not{display:block}
+.bataryaAyar{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:6px}
+.bataryaAyar label{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--soluk)}
+.bataryaAyar input{width:76px;padding:3px 6px}
+table.kars{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+table.kars th,table.kars td{padding:5px 8px;border-bottom:1px solid var(--cizgi);text-align:right}
+table.kars th:first-child,table.kars td:first-child{text-align:left}
+
+/* Yolculuk */
+#olaylar{list-style:none;margin:0;padding:0;max-height:640px;overflow:auto}
+#olaylar li button{display:grid;grid-template-columns:62px 1fr;gap:8px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--cizgi);border-radius:0;padding:8px 2px}
+#olaylar li button:hover{background:var(--panel)}
+#olaylar .an{color:var(--soluk);font-size:13px;line-height:1.3}
+#olaylar .isaret{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+#olaylar li.secili button{background:var(--panel)}
+
+footer{padding:0 24px 30px;color:var(--soluk);font-size:13px;max-width:1100px}
+footer h2{color:var(--regolit);font-size:17px;margin:18px 0 6px}
+footer p{margin:4px 0 8px}
+footer a{color:var(--dunya)}
+
+body.sade .uzman{display:none}
+body.sade main{grid-template-columns:minmax(300px,380px) 1fr}
+@media (max-width:1100px){main{grid-template-columns:1fr 1fr}#yolculuk{grid-column:1/-1}}
+@media (max-width:720px){main,body.sade main{grid-template-columns:1fr}header,main{padding-left:14px;padding-right:14px}#ufukKutusu,.zaman{margin-left:14px;margin-right:14px}.ozet{grid-template-columns:1fr 1fr}#panorama{height:220px}#cumle{font-size:15px}.zaman{flex-wrap:wrap}#zamanEtiket{min-width:0;text-align:left}#yer{display:none}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ay İniş Navigatörü<small>Ay'ın güney kutbunda nereye, ne zaman inilir? Güneş ve Dünya'yı gerçek arazi ufkuna göre gösterir.</small></h1>
+  <div class="kosullar">
+    <label class="kosul">Görev başlangıcı (UTC)<input type="date" id="baslangic"></label>
+    <label class="kosul">Süre<select id="sure"><option value="7">7 gün</option><option value="14">14 gün</option><option value="30" selected>30 gün</option><option value="90">90 gün</option></select></label>
+    <div class="kosul">Panel/anten yüksekliği<div class="ikili" id="yukseklik"><button aria-pressed="true" data-i="0">2 m</button><button aria-pressed="false" data-i="1">10 m</button></div></div>
+    <div class="kosul">Görünüm<div class="ikili" id="mod"><button aria-pressed="false" data-m="sade">Sade</button><button aria-pressed="true" data-m="uzman">Uzman</button></div></div>
+  </div>
+</header>
+
+<div id="ufukKutusu">
+  <div id="cumle" aria-live="polite"></div>
+  <canvas id="panorama" aria-label="Seçili noktadan 360 derece arazi ufku, Güneş ve Dünya'nın yolları"></canvas>
+  <div id="yer"></div>
+</div>
+<div class="zaman">
+  <button id="oynat" aria-label="Oynat">▶ Oynat</button>
+  <input type="range" id="imlec" min="0" max="335" value="0" aria-label="Zaman imleci">
+  <span id="zamanEtiket" class="sayi"></span>
+</div>
+
+<main>
+  <section id="rotalar">
+    <h2>Rotalar</h2>
+    <p class="not">Seçtiğin tarihler için 45 aday noktanın en iyileri. Bir karta tıkla, panorama o noktaya geçsin.</p>
+    <div id="oneriler"></div>
+    <label class="kosul">Bölgedeki diğer noktalar<select id="bolge" class="bolgeSec"></select></label>
+    <div id="bolgeNoktalari"></div>
+    <canvas id="harita" aria-label="Güney kutbu haritası ve aday bölgeler"></canvas>
+    <div class="haritaAlt">
+      <span class="not">Noktalar: 2027 yıllık</span>
+      <div class="ikili" id="isi"><button aria-pressed="true" data-k="2">Güneş</button><button aria-pressed="false" data-k="3">Dünya</button></div>
+    </div>
+  </section>
+
+  <section id="seritler">
+    <h2 id="noktaBaslik">Görev penceresi</h2>
+    <div class="ozet">
+      <div><span class="sayi g" id="oGunes"></span><span class="not">Güneş görünür</span></div>
+      <div><span class="sayi d" id="oDunya"></span><span class="not">Dünya ile görüş hattı</span></div>
+      <div><span class="sayi" id="oKaranlik"></span><span class="not">En uzun karanlık</span></div>
+      <div><span class="sayi" id="oSessiz"></span><span class="not">En uzun iletişimsizlik</span></div>
+    </div>
+    <div class="serit"><h3>Güneş <span id="sgNot">diskin görünen kısmı</span></h3><canvas id="seritGunes"></canvas></div>
+    <div class="serit"><h3>Dünya <span>ufkun üstünde mi</span></h3><canvas id="seritDunya"></canvas></div>
+    <div class="serit uzman"><h3>Batarya <span id="bataryaNot"></span></h3><canvas id="seritBatarya"></canvas>
+      <div class="bataryaAyar">
+        <label>Panel gücü (kW) <input type="number" id="bPanel" value="10" min="0" step="1"></label>
+        <label>Tüketim (kW) <input type="number" id="bYuk" value="2.5" min="0" step="0.5"></label>
+        <label>Batarya (kWh) <input type="number" id="bKap" value="120" min="1" step="10"></label>
+      </div>
+      <p class="not">Basit model: Güneşi izleyen dikey panel, güç = panel gücü × diskin görünen kesri; sabit tüketim; başlangıçta batarya dolu. Değerler örnek amaçlıdır.</p>
+    </div>
+    <div class="uzman" id="karsKutusu"></div>
+  </section>
+
+  <section id="yolculuk" class="uzman">
+    <h2>Yolculuk</h2>
+    <p class="not">Bir olaya tıkla, imleç o ana gitsin ve panorama nedenini göstersin.</p>
+    <ul id="olaylar"></ul>
+  </section>
+</main>
+
+<footer>
+  <h2>Nasıl hesaplandı</h2>
+  <p>Her aday noktadan 360° boyunca, 300 km uzağa kadar LOLA yükseklik verisi taranıp arazinin ufku çıkarıldı (Ay'ın eğriliği dahil). Güneş ve Dünya'nın saatlik konumları NASA/JPL DE440 efemerisinden, Ay'ın yönelimi DE440 kernel'lerinden, DEM ile aynı çerçevede (MOON_ME) hesaplandı. Güneş disk olarak ele alınır, Dünya için merkezinin ufkun üstünde olması aranır.</p>
+  <p id="dogrulamaMetni"></p>
+  <h2>Veri kaynakları</h2>
+  <p id="kaynaklar"></p>
+  <p>Kısıtlar: arazi 80 m/piksel; daha ince ayrıntılar (kayalar, küçük krater kenarları) ufka yansımaz. 80°G'nin kuzeyindeki arazi veri dışında kalır. Aday noktalar bu projenin kendi taramasıdır, NASA'nın seçtiği noktalar değildir.</p>
+  <p id="surum"></p>
+</footer>
+
+<script id="veri" type="application/json">/*VERI*/</script>
+<script>
+"use strict";
+const V = JSON.parse(document.getElementById("veri").textContent);
+const R_KM = 1737.4, GUNES_R = 695700, SAAT = 3600;
+const $ = s => document.querySelector(s);
+const rad = Math.PI/180, der = 180/Math.PI;
+
+function b64(s, Tip){ const b=atob(s), u=new Uint8Array(b.length); for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i); return new Tip(u.buffer); }
+const GUN = b64(V.efemeris.gunes, Float32Array), DUN = b64(V.efemeris.dunya, Float32Array);
+const T0 = V.efemeris.t0_unix, NH = V.efemeris.n;
+const NOKTALAR = V.noktalar.map(p => ({...p, ufuklar: p.ufuk.map(s => { const a=b64(s,Int16Array), f=new Float32Array(a.length); for(let i=0;i<a.length;i++)f[i]=a[i]/100; return f; })}));
+const NOKTA = Object.fromEntries(NOKTALAR.map(p=>[p.id,p]));
+const BOLGE = Object.fromEntries(V.bolgeler.map(b=>[b.id,b]));
+const ETIKET = {dengeli:"Dengeli", guc:"En çok güç", iletisim:"En uzun iletişim", yedek:"Yedek"};
+
+const D = { nokta:null, kars:null, h:0, bas:0, sure:14*24, imlec:0, mod:"uzman", isi:2, oynuyor:false };
+
+/* ---------- Gökyüzü hesabı ---------- */
+function yerelEksen(lat, lon){
+  const f=lat*rad, l=lon*rad;
+  return { dogu:[-Math.sin(l),Math.cos(l),0], kuzey:[-Math.sin(f)*Math.cos(l),-Math.sin(f)*Math.sin(l),Math.cos(f)], yukari:[Math.cos(f)*Math.cos(l),Math.cos(f)*Math.sin(l),Math.sin(f)] };
+}
+function ufukAt(u, az){ const n=u.length, i=((az%360)+360)%360/(360/n), i0=Math.floor(i)%n, i1=(i0+1)%n, f=i-Math.floor(i); return u[i0]*(1-f)+u[i1]*f; }
+function diskKesri(x){ x=Math.max(-1,Math.min(1,x)); return 1-(Math.acos(x)-x*Math.sqrt(1-x*x))/Math.PI; }
+
+const onbellek = new Map();
+function hesapla(p, hi, bas, sure){
+  const anahtar = p.id+"|"+hi+"|"+bas+"|"+sure;
+  if (onbellek.has(anahtar)) return onbellek.get(anahtar);
+  const e = yerelEksen(p.lat, p.lon), u = p.ufuklar[hi];
+  const r = R_KM + (p.zemin_m + V.yukseklikler[hi]) / 1000;
+  const P = e.yukari.map(v=>v*r);
+  const n = sure, s = { gaz:new Float32Array(n), gel:new Float32Array(n), gk:new Float32Array(n), daz:new Float32Array(n), del:new Float32Array(n), dv:new Uint8Array(n), gu:new Float32Array(n), du:new Float32Array(n) };
+  for (let k=0;k<n;k++){
+    const i=(bas+k)*3;
+    for (const [A,az,el,ufk,isGunes] of [[GUN,"gaz","gel","gu",1],[DUN,"daz","del","du",0]]){
+      const v=[A[i]-P[0],A[i+1]-P[1],A[i+2]-P[2]], L=Math.hypot(v[0],v[1],v[2]);
+      const up=(v[0]*e.yukari[0]+v[1]*e.yukari[1]+v[2]*e.yukari[2])/L;
+      const yy=v[0]*e.dogu[0]+v[1]*e.dogu[1], xx=v[0]*e.kuzey[0]+v[1]*e.kuzey[1]+v[2]*e.kuzey[2];
+      const a=((Math.atan2(yy,xx)*der)+360)%360, h=Math.asin(up)*der, hu=ufukAt(u,a);
+      s[az][k]=a; s[el][k]=h; s[ufk][k]=hu;
+      if (isGunes) s.gk[k]=diskKesri((h-hu)/(Math.asin(GUNES_R/L)*der));
+      else s.dv[k]=h>hu?1:0;
+    }
+  }
+  s.m = ozet(s);
+  onbellek.set(anahtar, s);
+  return s;
+}
+function enUzun(dizi, kosul){ let m=0,c=0; for(let i=0;i<dizi.length;i++){ if(kosul(dizi[i])){c++; if(c>m)m=c;} else c=0; } return m; }
+function ozet(s){
+  let g=0,e=0,d=0; for(let i=0;i<s.gk.length;i++){ if(s.gk[i]>0)g++; e+=s.gk[i]; d+=s.dv[i]; }
+  const n=s.gk.length;
+  return { gunes:100*g/n, enerji:100*e/n, dunya:100*d/n, karanlik:enUzun(s.gk,x=>x<=0), sessiz:enUzun(s.dv,x=>!x) };
+}
+
+/* ---------- Biçim ---------- */
+const sureYaz = h => h===0 ? "yok" : h<48 ? `${h} saat` : `${Math.floor(h/24)} gün ${h%24} sa`;
+const yuzde = x => "%"+x.toFixed(0);
+function tarih(hIndex){ return new Date((T0 + hIndex*SAAT)*1000); }
+function zamanYaz(k){ const t=tarih(D.bas+k); const g=Math.floor(k/24)+1; return `Gün ${g} · ${t.toLocaleDateString("tr-TR",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"})} ${String(t.getUTCHours()).padStart(2,"0")}:00 UTC`; }
+function anYaz(k){ const g=Math.floor(k/24)+1; return `Gün ${g}<br>${String(tarih(D.bas+k).getUTCHours()).padStart(2,"0")}:00`; }
+const ad = p => `${BOLGE[p.bolge].ad} ${p.id.split("__")[1]}`;
+
+/* ---------- Pencere ve öneriler ---------- */
+function pencereyiAyarla(){
+  const t = Date.UTC(...$("#baslangic").value.split("-").map((x,i)=>i===1?x-1:+x))/1000;
+  D.sure = +$("#sure").value*24;
+  D.bas = Math.max(0, Math.min(NH - D.sure, Math.round((t - T0)/SAAT)));
+  D.imlec = Math.min(D.imlec, D.sure-1);
+  $("#imlec").max = D.sure-1; $("#imlec").value = D.imlec;
+}
+function hepsi(){ return NOKTALAR.map(p=>({p, m:hesapla(p,D.h,D.bas,D.sure).m})); }
+function oneriler(){
+  const l = hepsi(), sec=[];
+  const tur = [
+    ["Dengeli", x=>x.m.enerji + x.m.dunya - 0.05*(x.m.karanlik+x.m.sessiz)],
+    ["En çok güç", x=>x.m.enerji - 0.02*x.m.karanlik],
+    ["En uzun iletişim", x=>x.m.dunya - 0.02*x.m.sessiz],
+  ];
+  for (const [isim,f] of tur){ const en=[...l].sort((a,b)=>f(b)-f(a)).find(x=>!sec.some(s=>s.x.p.id===x.p.id)); sec.push({isim,x:en}); }
+  return sec;
+}
+function kart(p, m, tur){
+  const b=document.createElement("button"); b.className="rota"; b.dataset.id=p.id;
+  b.setAttribute("aria-current", D.nokta===p.id);
+  b.innerHTML = `<span class="ad">${ad(p)}</span><span class="tur">${tur}</span>
+    <span class="olcu sayi"><span class="g"><b>${yuzde(m.gunes)}</b> Güneş</span><span class="d"><b>${yuzde(m.dunya)}</b> Dünya</span><span>karanlık ${sureYaz(m.karanlik)}</span></span>`;
+  b.onclick = e => { if (e.shiftKey) karsilastir(p.id); else sec(p.id); };
+  const k=document.createElement("span"); k.className="kars uzman"; k.setAttribute("role","button"); k.tabIndex=0;
+  k.textContent = D.kars===p.id ? "Karşılaştırılıyor" : "Karşılaştır";
+  k.onclick = e => { e.stopPropagation(); karsilastir(p.id); };
+  k.onkeydown = e => { if(e.key==="Enter"){ e.preventDefault(); e.stopPropagation(); karsilastir(p.id);} };
+  b.appendChild(k);
+  return b;
+}
+function rotalariCiz(){
+  const o=$("#oneriler"); o.innerHTML="";
+  for (const {isim,x} of oneriler()) o.appendChild(kart(x.p, x.m, isim));
+  const bn=$("#bolgeNoktalari"); bn.innerHTML="";
+  const bolge = NOKTA[D.nokta].bolge; $("#bolge").value = bolge;
+  for (const p of NOKTALAR.filter(p=>p.bolge===bolge)) bn.appendChild(kart(p, hesapla(p,D.h,D.bas,D.sure).m, "Bölgede: "+p.etiket.split("+").map(e=>ETIKET[e].toLowerCase()).join(", ")));
+}
+function sec(id){ D.nokta=id; if (D.kars===id) D.kars=null; ciz(); }
+function karsilastir(id){ D.kars = (D.kars===id || D.nokta===id) ? null : id; ciz(); }
+
+/* ---------- Panorama ---------- */
+function tuval(c){ const r=c.getBoundingClientRect(), o=devicePixelRatio||1; c.width=Math.round(r.width*o); c.height=Math.round(r.height*o); const x=c.getContext("2d"); x.setTransform(o,0,0,o,0,0); return [x,r.width,r.height]; }
+function panorama(){
+  const p=NOKTA[D.nokta], s=hesapla(p,D.h,D.bas,D.sure), u=p.ufuklar[D.h];
+  const [x,W,H]=tuval($("#panorama"));
+  let ust=4; for (const v of u) ust=Math.max(ust,v+1.5);
+  for (let k=0;k<s.del.length;k++) ust=Math.max(ust, Math.min(s.del[k]+1.2, 14));
+  ust=Math.min(ust,16); const alt=-2.5;
+  const X=a=>a/360*W, Y=e=>H-14-(e-alt)/(ust-alt)*(H-24);
+  // ızgara
+  x.font="12px 'Barlow Semi Condensed',sans-serif"; x.textAlign="center";
+  for (let e=Math.ceil(alt);e<=ust;e++){ if(e%2) continue; x.strokeStyle=e===0?"#ffffff30":"#ffffff10"; x.beginPath(); x.moveTo(0,Y(e)); x.lineTo(W,Y(e)); x.stroke(); }
+  // Güneş yolu
+  for (let k=0;k<s.gel.length;k+=1){ x.fillStyle = s.gk[k]>0 ? "#f2c14eb0" : "#f2c14e30"; x.fillRect(X(s.gaz[k])-1,Y(s.gel[k])-1,2,2); }
+  for (let k=0;k<s.del.length;k+=2){ x.fillStyle = s.dv[k] ? "#6fa8dcb0" : "#6fa8dc30"; x.fillRect(X(s.daz[k])-1,Y(s.del[k])-1,2,2); }
+  // anlık Güneş ve Dünya (arazinin arkasında kalanlar silüetle örtülür)
+  const k=D.imlec, pxDer=(H-24)/(ust-alt);
+  const gr=Math.max(4, 0.27*pxDer), dr=Math.max(5, 0.95*pxDer);
+  const isik=x.createRadialGradient(X(s.gaz[k]),Y(s.gel[k]),0,X(s.gaz[k]),Y(s.gel[k]),gr*5);
+  isik.addColorStop(0,"#f2c14e60"); isik.addColorStop(1,"#f2c14e00");
+  x.fillStyle=isik; x.beginPath(); x.arc(X(s.gaz[k]),Y(s.gel[k]),gr*5,0,7); x.fill();
+  x.fillStyle="#ffe7a3"; x.beginPath(); x.arc(X(s.gaz[k]),Y(s.gel[k]),gr,0,7); x.fill();
+  x.fillStyle="#6fa8dc"; x.beginPath(); x.arc(X(s.daz[k]),Y(s.del[k]),dr,0,7); x.fill();
+  x.fillStyle="#cfe3f5"; x.beginPath(); x.arc(X(s.daz[k])-dr*.25,Y(s.del[k])-dr*.25,dr*.45,0,7); x.fill();
+  // arazi
+  x.fillStyle="#141920"; x.beginPath(); x.moveTo(0,H);
+  for (let i=0;i<=u.length;i++){ x.lineTo(X(i*360/u.length), Y(u[i%u.length])); }
+  x.lineTo(W,H); x.closePath(); x.fill();
+  x.strokeStyle="#5d6878"; x.lineWidth=1; x.stroke();
+  // yön harfleri
+  x.fillStyle="#9aa3ae";
+  [["K",0],["KD",45],["D",90],["GD",135],["G",180],["GB",225],["B",270],["KB",315],["K",360]].forEach(([t,a])=>x.fillText(t, Math.min(W-8,Math.max(8,X(a))), H-2));
+  x.textAlign="left"; for (let e=Math.ceil(alt);e<=ust;e++){ if(e%2) continue; x.fillText(e+"°",4,Y(e)-3); }
+  $("#yer").innerHTML = `${ad(p)} · ${p.lat.toFixed(3)}°, ${p.lon.toFixed(3)}° · zemin ${Math.round(p.zemin_m)} m, eğim ${p.egim_derece}° · gözlemci ${V.yukseklikler[D.h]} m`;
+  cumle(p,s,k);
+}
+function suredirYok(dizi,k,kosul){ let n=0; while(k-n>=0 && kosul(dizi[k-n])) n++; return n; }
+function sonrakiDegisim(dizi,k,kosul){ let n=0; while(k+n<dizi.length && kosul(dizi[k+n])) n++; return k+n<dizi.length?n:null; }
+function cumle(p,s,k){
+  const gp = s.gel[k]-s.gu[k], dp = s.del[k]-s.du[k];
+  let g;
+  if (s.gk[k]>=0.999) g=`Güneş arazi ufkunun <b class="g">${gp.toFixed(1)}°</b> üstünde, panel tam ışık alıyor.`;
+  else if (s.gk[k]>0) g=`Güneş diskinin <b class="g">%${Math.round(100*s.gk[k])}</b>'i arazinin üstünde, panel kısmen ışık alıyor.`;
+  else { const n=suredirYok(s.gk,k,x=>x<=0), m=sonrakiDegisim(s.gk,k,x=>x<=0); g=`Güneş arazinin arkasında. Karanlık başlayalı <b>${sureYaz(n)}</b> oldu${m!==null?`, Güneş ${sureYaz(m)} sonra geri geliyor`:""}.`; }
+  let d;
+  if (s.dv[k]) d=` Dünya ufkun <b class="d">${dp.toFixed(1)}°</b> üstünde, doğrudan iletişim mümkün.`;
+  else { const n=suredirYok(s.dv,k,x=>!x), m=sonrakiDegisim(s.dv,k,x=>!x); d=` Dünya ${s.del[k]<0?"Ay'ın ufkunun altında":"arazinin arkasında"}. İletişim kesileli <b>${sureYaz(n)}</b> oldu${m!==null?`, ${sureYaz(m)} sonra geri geliyor`:""}.`; }
+  $("#cumle").innerHTML = g + d;
+  $("#zamanEtiket").textContent = zamanYaz(k);
+}
+
+/* ---------- Şeritler ---------- */
+function serit(c, ciz){
+  const [x,W,H]=tuval(c); const n=D.sure, w=W/n;
+  for (let g=24; g<n; g+=24){ x.fillStyle="#ffffff14"; x.fillRect(g*w,0,1,H); }
+  ciz(x,W,H,w,n);
+  x.fillStyle="#dcdcd5"; x.fillRect(D.imlec*w-1,0,2,H);
+}
+function seritler(){
+  const p=NOKTA[D.nokta], s=hesapla(p,D.h,D.bas,D.sure), q=D.kars?hesapla(NOKTA[D.kars],D.h,D.bas,D.sure):null;
+  serit($("#seritGunes"), (x,W,H,w,n)=>{
+    const sat=q?H/2:H;
+    for (let k=0;k<n;k++){ const f=s.gk[k]; if(f>0){ x.fillStyle="#f2c14e"; x.fillRect(k*w, sat-f*(sat-4), Math.max(w,1), f*(sat-4)); } }
+    if(q) for (let k=0;k<n;k++){ const f=q.gk[k]; if(f>0){ x.fillStyle="#f2c14e80"; x.fillRect(k*w, H-f*(sat-4), Math.max(w,1), f*(sat-4)); } }
+  });
+  serit($("#seritDunya"), (x,W,H,w,n)=>{
+    const sat=q?H/2:H;
+    for (let k=0;k<n;k++){ if(s.dv[k]){ x.fillStyle="#6fa8dc"; x.fillRect(k*w,4,Math.max(w,1),sat-8); } }
+    if(q) for (let k=0;k<n;k++){ if(q.dv[k]){ x.fillStyle="#6fa8dc80"; x.fillRect(k*w,sat+4,Math.max(w,1),sat-8); } }
+  });
+  $("#sgNot").textContent = q ? `üst: ${ad(p)}, alt: ${ad(NOKTA[D.kars])}` : "diskin görünen kısmı";
+  const bat = batarya(s), batq = q?batarya(q):null;
+  serit($("#seritBatarya"), (x,W,H,w,n)=>{
+    const Y=v=>H-4-v*(H-8);
+    x.strokeStyle="#e8794a50"; x.beginPath(); x.moveTo(0,Y(.2)); x.lineTo(W,Y(.2)); x.stroke();
+    const yol=(b,renk)=>{ x.strokeStyle=renk; x.lineWidth=1.6; x.beginPath(); for(let k=0;k<n;k++){ const yy=Y(b.soc[k]); k?x.lineTo(k*w,yy):x.moveTo(0,yy);} x.stroke(); };
+    if (batq) yol(batq,"#dcdcd570"); yol(bat,"#dcdcd5");
+  });
+  $("#bataryaNot").textContent = bat.bitti!==null ? `${zamanYaz(bat.bitti)} bitiyor` : `en düşük %${Math.round(100*bat.min)}`;
+  const m=s.m;
+  $("#oGunes").textContent=yuzde(m.gunes); $("#oDunya").textContent=yuzde(m.dunya);
+  $("#oKaranlik").textContent=sureYaz(m.karanlik); $("#oSessiz").textContent=sureYaz(m.sessiz);
+  $("#noktaBaslik").textContent = `${ad(p)} · ${D.sure/24} günlük görev`;
+  karsTablosu(p,s,q,bat,batq);
+}
+function batarya(s){
+  const P=+$("#bPanel").value||0, Y=+$("#bYuk").value||0, K=Math.max(1,+$("#bKap").value||1);
+  const soc=new Float32Array(s.gk.length); let e=K, min=1, bitti=null;
+  for (let k=0;k<soc.length;k++){ e=Math.min(K, Math.max(0, e + P*s.gk[k] - Y)); soc[k]=e/K; if(soc[k]<min)min=soc[k]; if(e<=0&&bitti===null)bitti=k; }
+  return {soc,min,bitti};
+}
+function karsTablosu(p,s,q,b,bq){
+  const k=$("#karsKutusu");
+  if(!q){ k.innerHTML=`<p class="not">İki noktayı yan yana görmek için bir rota kartında "Karşılaştır"a bas.</p>`; return; }
+  const satir=(t,a,c)=>`<tr><td>${t}</td><td>${a}</td><td>${c}</td></tr>`;
+  const bt=x=>x.bitti!==null?`Gün ${Math.floor(x.bitti/24)+1}'de bitiyor`:`en düşük %${Math.round(100*x.min)}`;
+  k.innerHTML=`<h3>Karşılaştırma</h3><table class="kars sayi"><tr><th></th><th>${ad(p)}</th><th>${ad(NOKTA[D.kars])}</th></tr>
+   ${satir("Güneş görünür",yuzde(s.m.gunes),yuzde(q.m.gunes))}
+   ${satir("Ortalama enerji",yuzde(s.m.enerji),yuzde(q.m.enerji))}
+   ${satir("Dünya ile görüş",yuzde(s.m.dunya),yuzde(q.m.dunya))}
+   ${satir("En uzun karanlık",sureYaz(s.m.karanlik),sureYaz(q.m.karanlik))}
+   ${satir("En uzun iletişimsizlik",sureYaz(s.m.sessiz),sureYaz(q.m.sessiz))}
+   ${satir("Batarya",bt(b),bt(bq))}</table>
+   <p class="not"><button id="karsKapat">Karşılaştırmayı kapat</button></p>`;
+  $("#karsKapat").onclick=()=>{D.kars=null;ciz();};
+}
+
+/* ---------- Olaylar ---------- */
+function olaylar(){
+  const p=NOKTA[D.nokta], s=hesapla(p,D.h,D.bas,D.sure), b=batarya(s), l=[];
+  for (let k=1;k<s.gk.length;k++){
+    if (s.gk[k-1]<=0 && s.gk[k]>0) l.push([k,"g","Güneş arazinin üstüne çıkıyor"]);
+    if (s.gk[k-1]>0 && s.gk[k]<=0){ const n=sonrakiDegisim(s.gk,k,x=>x<=0); l.push([k,"g", n===null||n>=24 ? `Güneş batıyor, uzun gölge (${n===null?"pencere sonuna kadar":sureYaz(n)})` : `Güneş arazinin arkasına geçiyor (${sureYaz(n)})`]); }
+    if (!s.dv[k-1] && s.dv[k]) l.push([k,"d","Dünya doğuyor, iletişim başlıyor"]);
+    if (s.dv[k-1] && !s.dv[k]){ const n=sonrakiDegisim(s.dv,k,x=>!x); l.push([k,"d",`Dünya batıyor, ${n===null?"pencere sonuna kadar":sureYaz(n)} iletişim yok`]); }
+    if (b.soc[k-1]>=.2 && b.soc[k]<.2) l.push([k,"u","Batarya %20'nin altına düştü"]);
+    if (b.bitti===k) l.push([k,"u","Batarya bitti, görev tehlikede"]);
+  }
+  const ul=$("#olaylar"); ul.innerHTML="";
+  if(!l.length){ ul.innerHTML=`<li class="not">Bu pencerede Güneş ve Dünya hiç kaybolmuyor.</li>`; return; }
+  const renk={g:"var(--gunes)",d:"var(--dunya)",u:"var(--uyari)"};
+  for (const [k,t,m] of l){
+    const li=document.createElement("li"); li.dataset.k=k;
+    li.innerHTML=`<button><span class="an sayi">${anYaz(k)}</span><span><span class="isaret" style="background:${renk[t]}"></span>${m}</span></button>`;
+    li.querySelector("button").onclick=()=>imlecAyarla(k);
+    ul.appendChild(li);
+  }
+  olayVurgu();
+}
+function olayVurgu(){ document.querySelectorAll("#olaylar li").forEach(li=>li.classList.toggle("secili", +li.dataset.k===D.imlec)); }
+
+/* ---------- Harita ---------- */
+const HARITA = new Image(); HARITA.src = V.harita.png; HARITA.onload = () => harita();
+function xy(lat,lon){ const r=2*R_KM*1000*Math.tan(Math.PI/4+lat*rad/2); return [r*Math.sin(lon*rad), r*Math.cos(lon*rad)]; }
+function harita(){
+  const c=$("#harita"); const [x,W,H]=tuval(c); const h=V.harita;
+  const P=(lat,lon)=>{ const [X,Y]=xy(lat,lon); return [(X-h.x0)/h.genislik_m*W, (h.y0-Y)/h.genislik_m*H]; };
+  if (HARITA.complete) x.drawImage(HARITA,0,0,W,H);
+  x.fillStyle="#00000040"; x.fillRect(0,0,W,H);
+  for (const [id,pts] of Object.entries(V.izgara)) for (const q of pts){
+    const v=q[D.isi]/100, [a,b]=P(q[0],q[1]);
+    x.fillStyle = D.isi===2 ? `rgba(242,193,78,${(v*v).toFixed(2)})` : `rgba(111,168,220,${(v*v).toFixed(2)})`;
+    x.fillRect(a-1,b-1,2.4,2.4);
+  }
+  x.lineWidth=1.2;
+  for (const b of V.bolgeler){
+    x.strokeStyle = NOKTA[D.nokta].bolge===b.id ? "#dcdcd5" : "#dcdcd570";
+    for (const halka of b.halkalar_lonlat){ x.beginPath(); halka.forEach(([lon,lat],i)=>{ const [a,c2]=P(lat,lon); i?x.lineTo(a,c2):x.moveTo(a,c2); }); x.closePath(); x.stroke(); }
+    if (NOKTA[D.nokta].bolge===b.id){ const ys=b.halkalar_lonlat[0].map(([lon,lat])=>P(lat,lon)[1]); const [a]=P(b.merkez_lat,b.merkez_lon);
+      x.font="600 13px 'Barlow Semi Condensed',sans-serif"; x.textAlign="center"; x.lineWidth=3; x.strokeStyle="#141920"; const tw=x.measureText(b.ad).width/2+4, ax=Math.max(tw,Math.min(W-tw,a)); x.strokeText(b.ad,ax,Math.min(...ys)-6); x.fillStyle="#ffffff"; x.fillText(b.ad,ax,Math.min(...ys)-6); x.lineWidth=1.2; }
+  }
+  for (const p of NOKTALAR){ const [a,b]=P(p.lat,p.lon); x.fillStyle = p.id===D.nokta?"#ffffff":p.id===D.kars?"#9aa3ae":"#dcdcd5"; x.beginPath(); x.arc(a,b,p.id===D.nokta?5:2.6,0,7); x.fill(); if(p.id===D.nokta){x.strokeStyle="#141920";x.lineWidth=2;x.stroke();} }
+  const [a,b]=P(-90,0); x.strokeStyle="#9aa3ae"; x.beginPath(); x.moveTo(a-5,b); x.lineTo(a+5,b); x.moveTo(a,b-5); x.lineTo(a,b+5); x.stroke();
+}
+$("#harita").addEventListener("click", e=>{
+  const r=e.target.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, h=V.harita;
+  let en=null, ed=14;
+  for (const p of NOKTALAR){ const [X,Y]=xy(p.lat,p.lon); const a=(X-h.x0)/h.genislik_m*r.width, b=(h.y0-Y)/h.genislik_m*r.height; const d=Math.hypot(a-mx,b-my); if(d<ed){ed=d;en=p;} }
+  if (en) sec(en.id);
+});
+
+/* ---------- Etkileşim ---------- */
+function imlecAyarla(k){ D.imlec=Math.max(0,Math.min(D.sure-1,k)); $("#imlec").value=D.imlec; panorama(); seritler(); olayVurgu(); }
+function ciz(){ rotalariCiz(); panorama(); seritler(); olaylar(); harita(); }
+$("#imlec").addEventListener("input", e=>imlecAyarla(+e.target.value));
+["#seritGunes","#seritDunya","#seritBatarya"].forEach(s=>$(s).addEventListener("click",e=>{ const r=e.target.getBoundingClientRect(); imlecAyarla(Math.floor((e.clientX-r.left)/r.width*D.sure)); }));
+$("#baslangic").addEventListener("change", ()=>{ pencereyiAyarla(); ciz(); });
+$("#sure").addEventListener("change", ()=>{ pencereyiAyarla(); ciz(); });
+["#bPanel","#bYuk","#bKap"].forEach(s=>$(s).addEventListener("input", ()=>{ seritler(); olaylar(); }));
+$("#yukseklik").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; D.h=+b.dataset.i; $("#yukseklik").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); ciz(); });
+$("#mod").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; document.body.classList.toggle("sade", b.dataset.m==="sade"); $("#mod").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); ciz(); });
+$("#isi").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; D.isi=+b.dataset.k; $("#isi").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); harita(); });
+$("#bolge").addEventListener("change", e=>{ const p=NOKTALAR.find(p=>p.bolge===e.target.value && p.etiket.startsWith("dengeli")) || NOKTALAR.find(p=>p.bolge===e.target.value); sec(p.id); });
+let zamanlayici=null;
+$("#oynat").addEventListener("click", ()=>{
+  if (zamanlayici){ clearInterval(zamanlayici); zamanlayici=null; $("#oynat").textContent="▶ Oynat"; return; }
+  $("#oynat").textContent="❚❚ Durdur";
+  const adim = Math.max(1, Math.round(D.sure/240));
+  zamanlayici=setInterval(()=>{ if (D.imlec+adim>=D.sure){ imlecAyarla(0); } else imlecAyarla(D.imlec+adim); }, 60);
+});
+addEventListener("resize", ()=>{ panorama(); seritler(); harita(); });
+document.addEventListener("keydown", e=>{ if(e.target.tagName==="INPUT"||e.target.tagName==="SELECT") return; if(e.key==="ArrowRight") imlecAyarla(D.imlec+1); if(e.key==="ArrowLeft") imlecAyarla(D.imlec-1); });
+
+/* ---------- Başlat ---------- */
+for (const b of V.bolgeler){ const o=document.createElement("option"); o.value=b.id; o.textContent=`${b.ad} (${Math.round(b.alan_km2)} km²)`; $("#bolge").appendChild(o); }
+const ilk = new Date(T0*1000), son = new Date((T0+(NH-24)*SAAT)*1000);
+$("#baslangic").min = ilk.toISOString().slice(0,10); $("#baslangic").max = son.toISOString().slice(0,10);
+$("#baslangic").value = V.varsayilan_baslangic || ilk.toISOString().slice(0,10);
+pencereyiAyarla();
+D.nokta = oneriler()[0].x.p.id;
+$("#kaynaklar").innerHTML = V.kaynaklar.map(k=>`${k.ad}: ${k.atif}${k.url?` (<a href="${k.url}">${k.url.replace(/^https?:\/\//,"")}</a>)`:""}. İndirilme: ${k.indirilme}.`).join("<br>");
+$("#dogrulamaMetni").innerHTML = V.dogrulama ? `Doğrulama: ${V.dogrulama.nokta_sayisi} rastgele noktada, NASA'nın 18.6 yıllık ortalama aydınlanma haritalarıyla (PGDA ürün 69) aynı koşullarda karşılaştırıldı. Güneş için ortalama mutlak fark <b>${V.dogrulama.gunes_ort_mutlak_fark_puan}</b> yüzde puanı (korelasyon ${V.dogrulama.gunes_korelasyon}), Dünya için <b>${V.dogrulama.dunya_ort_mutlak_fark_puan}</b> puan (korelasyon ${V.dogrulama.dunya_korelasyon}).` : "";
+$("#surum").textContent = `Veri paketi oluşturma: ${V.olusturma} · sürüm ${V.surum}`;
+ciz();
+</script>
+</body>
+</html>

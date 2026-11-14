@@ -1,0 +1,54 @@
+# Every modelling assumption lives here, with its source.
+# Change a value here, never as a literal in code.
+
+[moon]
+# IAU reference sphere used by the LOLA polar DEMs (heights are relative to it).
+radius_m = 1737400.0
+source = "Barker et al. 2023, PSJ 4:183; DEM CRS 'Moon (2015) - Sphere', IAU:30100"
+
+[ephemeris]
+# Hourly Sun/Earth table span (UTC, end exclusive). DE421 is valid 1900-2050.
+start = [2026, 1, 1]
+end = [2031, 1, 1]
+step_hours = 1.0
+
+[visibility]
+# Earth counts as visible (direct-to-Earth link possible) when its centre is
+# this many degrees above the terrain horizon. 0 = bare line of sight; a real
+# antenna mask would raise it. ASSUMPTION, not from a NASA requirement.
+earth_min_margin_deg = 0.0
+# A time step is "dark" when no part of the solar disk clears the horizon.
+source = "Plan §7; Sun treated as a disk (IAU nominal radius), Earth as a point"
+
+[sites]
+# Landing sites must be flat; steep points are dominated by their own slope.
+# ASSUMPTION: 5 deg, a typical lander slope limit order of magnitude.
+max_slope_deg = 5.0
+
+[landing_error]
+# Rings around a target point on which the same metrics are recomputed, to show
+# what a landing error costs (scripts/export_sensitivity.py).
+# ASSUMPTION, not a NASA requirement we verified: 100 m is the order of magnitude
+# usually quoted for precision landing; 300 m is our own candidate spacing.
+radii_m = [100.0, 300.0]
+azimuth_count = 8
+
+[horizon]
+# Azimuth step of the horizon profile, degrees.
+azimuth_step_deg = 0.1
+# Observer (solar panel / antenna) heights above ground, metres. Plan §7.
+observer_heights_m = [2.0, 10.0]
+
+# DEM layers, finest first. A ray uses each layer between its min and max
+# distance from the observer. Distances in metres.
+[[horizon.layers]]
+name = "near_20m"
+source = "LDEM_80S_20MPP_ADJ.TIF (PGDA product 90), local crop"
+min_dist_m = 0.0
+max_dist_m = 10000.0
+
+[[horizon.layers]]
+name = "far_80m"
+source = "LDEM_80S_80MPP_ADJ.TIF (PGDA product 90)"
+min_dist_m = 10000.0
+max_dist_m = 300000.0

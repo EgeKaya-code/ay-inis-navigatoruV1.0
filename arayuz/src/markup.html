@@ -1,0 +1,402 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="8" r="1.7" fill="currentColor"/></symbol>
+    <symbol id="i-earth" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+    <symbol id="i-dark" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 2a6 6 0 0 0 0 12z" fill="currentColor"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 16 16"><path d="M8 1.8 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.2v4M8 11.6v1" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+    <symbol id="i-play" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 16 16"><path d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z" fill="currentColor"/></symbol>
+    <symbol id="i-next" viewBox="0 0 16 16"><path d="M2.5 2.5v11l8-5.5zM11.5 2.5h2.2v11h-2.2z" fill="currentColor"/></symbol>
+    <symbol id="i-back" viewBox="0 0 16 16"><path d="M10 2.5 4 8l6 5.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-link" viewBox="0 0 16 16"><path d="M2 13 13.5 2.5" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="3" cy="12.5" r="2" fill="currentColor"/><path d="M9.5 2.5h4v4" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+    <symbol id="i-cut" viewBox="0 0 16 16"><path d="M3 3l10 10M13 3 3 13" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="i-both" viewBox="0 0 16 16"><circle cx="6" cy="8" r="4.4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8" r="4.4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 16 16"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="i-cols" viewBox="0 0 16 16"><path d="M2 2.5h3.2v11H2zM6.4 2.5h3.2v11H6.4zM10.8 2.5H14v11h-3.2z" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="i-list" viewBox="0 0 16 16"><path d="M2 3.5h2M6 3.5h8M2 8h2M6 8h8M2 12.5h2M6 12.5h8" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+    <symbol id="i-info" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7v4.6M8 4.4v1.3" stroke="currentColor" stroke-width="1.7" fill="none"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 16 16"><path d="M2.5 4h11v9.5h-11zM2.5 7h11M5.5 2v3M10.5 2v3" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-pole" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2 2"/><circle cx="8" cy="8" r="1.8" fill="currentColor"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2 8h12M8 2c-2.5 2-2.5 10 0 12M8 2c2.5 2 2.5 10 0 12" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.2"/><path d="M5 2.4v3.2M10.5 6.4v3.2M6.5 10.4v3.2" stroke="currentColor" stroke-width="2.2"/></symbol>
+    <symbol id="i-batt" viewBox="0 0 16 16"><rect x="1.5" y="4.5" width="11.5" height="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14.5 6.5v3" stroke="currentColor" stroke-width="1.8"/></symbol>
+  </defs>
+</svg>
+
+<div id="app" data-scene="home" data-expert="off">
+
+  <!-- ============ SAHNE 0: AÇILIŞ — DÖNEN AY ============ -->
+  <section id="home" class="scene" data-mode="" data-cluster="true" data-present="off">
+    <canvas id="globe"></canvas>
+    <p class="h-nogl" id="hNoGl" hidden></p>
+    <div class="g-marks" id="gMarks"></div>
+    <button id="gCluster" class="g-cluster" type="button" hidden><i></i><span id="gClusterL"></span></button>
+    <div class="g-dir g-sun" id="gSun" aria-hidden="true"><i></i><span><svg class="ic"><use href="#i-sun"/></svg><span data-t="home.sunDir"></span></span></div>
+    <div class="g-dir g-earth" id="gEarth" aria-hidden="true"><i></i><span><svg class="ic"><use href="#i-earth"/></svg><span data-t="home.earthDir"></span></span></div>
+
+    <header class="h-top">
+      <div class="h-brand">
+        <svg class="brand-mark" viewBox="0 0 44 44" aria-hidden="true">
+          <circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M3 27c7-3 10 1 15-2s8-6 12-4 6 4 11 2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle class="bm-sun" cx="31" cy="18.2" r="3.2"/>
+          <circle class="bm-earth" cx="12" cy="13" r="2.2"/>
+          <path d="M22 0v5M22 39v5M0 22h5M39 22h5" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <div><p class="eyebrow" data-t="home.eyebrow"></p><h1 data-t="app.name"></h1></div>
+      </div>
+      <nav class="h-tools" aria-label="">
+        <button id="hPresent" class="hbtn hbtn-strong" type="button" data-t-title="home.presentTitle"><svg class="ic"><use href="#i-play"/></svg><span data-t="home.present"></span></button>
+        <button id="hVideo" class="hbtn" type="button" data-t-title="video.title"><svg class="ic"><use href="#i-play"/></svg><span data-t="home.video"></span></button>
+        <button id="hList" class="hbtn" type="button" data-t-title="home.listTitle"><svg class="ic"><use href="#i-list"/></svg><span data-t="home.list"></span></button>
+        <button class="hbtn cmp-open" type="button" data-cmp-open><svg class="ic"><use href="#i-cols"/></svg><span></span></button>
+        <select id="hLang" class="sel sel-sm hsel" hidden></select>
+        <button id="hInfo" class="hbtn hbtn-icon" type="button" data-t-title="home.infoTitle"><svg class="ic"><use href="#i-info"/></svg></button>
+      </nav>
+    </header>
+
+    <div class="h-view" role="group">
+      <button id="hOverview" class="hbtn hbtn-icon" type="button" data-t-title="home.viewAll"><svg class="ic"><use href="#i-globe"/></svg></button>
+      <button id="hPole" class="hbtn hbtn-icon" type="button" data-t-title="home.viewPole"><svg class="ic"><use href="#i-pole"/></svg></button>
+    </div>
+
+    <div class="h-tip" id="hTip" hidden></div>
+
+    <aside class="h-regions">
+      <button id="hRegToggle" class="hbtn" type="button" aria-expanded="false" aria-controls="hRegList"><svg class="ic"><use href="#i-list"/></svg><span data-t="home.regions"></span></button>
+      <ol id="hRegList" class="h-reglist" hidden></ol>
+    </aside>
+
+    <footer class="h-foot">
+      <div class="h-date">
+        <button id="hDateBtn" class="hchip" type="button" data-t-title="home.dateTitle"><svg class="ic"><use href="#i-cal"/></svg><small data-t="home.landing"></small><b id="hDateV"></b></button>
+        <label class="h-datefield" id="hDateField" hidden><input type="datetime-local" id="hDate" step="3600"><small data-t="top.utc"></small></label>
+      </div>
+      <div class="h-light">
+        <button id="hSpin" class="hbtn hbtn-icon" type="button" aria-pressed="true"><svg class="ic"><use href="#i-pause"/></svg></button>
+        <span><small data-t="home.light"></small> <b id="hLightV"></b></span>
+      </div>
+    </footer>
+    <p class="h-hint" id="hHint" data-t="home.hint"></p>
+
+    <div class="h-approach" id="hApproach" hidden>
+      <small data-t="home.approach"></small>
+      <b id="haName"></b>
+      <span id="haPoint"></span>
+      <div class="ha-alt"><small data-t="home.altitude"></small><strong id="haAlt"></strong></div>
+      <button id="haCancel" class="hbtn" type="button" data-t="home.cancel"></button>
+    </div>
+
+    <div class="present" id="present" hidden data-scene="">
+      <div class="pr-card">
+        <p class="pr-kick" id="prKick"></p>
+        <h2 class="pr-title" id="prTitle"></h2>
+        <p class="pr-line" id="prLine"></p>
+        <div class="pr-figs" id="prFigs"></div>
+        <p class="pr-note" id="prNote"></p>
+      </div>
+      <div class="pr-nav">
+        <button id="prPrev" class="hbtn hbtn-icon" type="button" data-t-title="present.prev"><svg class="ic"><use href="#i-back"/></svg></button>
+        <ol class="pr-dots" id="prDots" aria-hidden="true"></ol>
+        <button id="prNext" class="hbtn hbtn-strong" type="button"><span id="prNextL"></span><svg class="ic"><use href="#i-next"/></svg></button>
+        <button id="prExit" class="hbtn" type="button" data-t="present.exit"></button>
+      </div>
+    </div>
+    <div class="h-fade" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ SAHNE 1: GÖREV BRİFİNGİ ============ -->
+  <section id="briefing" class="scene" hidden>
+    <header class="b-head">
+      <button id="bHome" class="btn b-home" type="button"><svg class="ic"><use href="#i-back"/></svg><span data-t="home.backToMoon"></span></button>
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 44 44" aria-hidden="true">
+          <circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M3 27c7-3 10 1 15-2s8-6 12-4 6 4 11 2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle class="bm-sun" cx="31" cy="18.2" r="3.2"/>
+          <circle class="bm-earth" cx="12" cy="13" r="2.2"/>
+          <path d="M22 0v5M22 39v5M0 22h5M39 22h5" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <div>
+          <p class="eyebrow" data-t="brief.eyebrow"></p>
+          <h1 data-t="app.name"></h1>
+        </div>
+      </div>
+      <p class="b-lede" data-t="brief.lede"></p>
+      <button id="btnVideo" class="btn video-open" type="button"><svg class="ic"><use href="#i-play"/></svg><span data-t="video.open"></span></button>
+      <button class="btn cmp-open" type="button" data-cmp-open><svg class="ic"><use href="#i-cols"/></svg><span></span></button>
+    </header>
+
+    <div class="b-body">
+      <div class="b-map panel">
+        <canvas id="mapCanvas" role="img"></canvas>
+        <div class="map-tools">
+          <button id="mapCands" class="btn btn-sm" type="button" data-t="cand.zoom" hidden></button>
+          <button id="mapPick" class="btn btn-sm" type="button" data-t="cand.zoomPick" hidden></button>
+          <button id="mapFit" class="btn btn-sm" type="button" data-t="brief.mapFit"></button>
+        </div>
+        <div id="mapLegend" class="map-legend" hidden></div>
+        <div id="mapTip" class="map-tip" hidden></div>
+        <p class="map-note" data-t="brief.mapNote"></p>
+      </div>
+
+      <aside class="b-board">
+        <div class="board-head">
+          <h2 data-t="brief.boardTitle"></h2>
+          <span class="period" data-t="brief.period"></span>
+        </div>
+        <div class="seg" id="sortBar" role="group"></div>
+        <div class="weightbar xp" id="weightBar" role="group" hidden></div>
+        <p class="formula" id="sortNote"></p>
+        <ol id="cards" class="cards"></ol>
+        <div class="launch panel" id="launch">
+          <div id="siteDetail" class="site-detail"></div>
+          <div id="candBar" class="candbar" role="group" hidden></div>
+          <div class="launch-row">
+            <label class="datefield"><span data-t="brief.date"></span><input type="datetime-local" id="bDate" step="3600"><small data-t="top.utc"></small></label>
+            <label class="check" data-t-title="brief.descentTitle"><input type="checkbox" id="chkDescent"><span data-t="brief.descent"></span></label>
+          </div>
+          <div class="launch-row">
+            <span class="launch-hint" id="landHint"></span>
+            <span class="launch-btns">
+              <button id="bAddCmp" class="btn" type="button"><svg class="ic"><use href="#i-plus"/></svg><span data-t="cmp.add"></span></button>
+              <button id="btnLand" class="btn btn-primary" type="button" data-t="brief.land"></button>
+            </span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ SAHNE 2 + 3: İNİŞ SEKANSI ve GÖREV KOKPİTİ ============ -->
+  <section id="cockpit" class="scene" hidden data-view="orbit" data-flat="false" data-simple="false" data-boot="done">
+    <div id="viewport" class="viewport">
+      <canvas id="gl"></canvas>
+      <canvas id="pano" hidden></canvas>
+      <div id="markers" class="markers" aria-hidden="true">
+        <div class="mk mk-lander" id="mkLander" hidden><i></i><span data-t="scene.landerMark"></span></div>
+        <div class="mk mk-sun" id="mkSun" hidden><i></i><span></span></div>
+        <div class="mk mk-earth" id="mkEarth" hidden><i></i><span></span></div>
+      </div>
+    </div>
+
+    <header class="c-top">
+      <button id="btnBack" class="btn" type="button"><svg class="ic"><use href="#i-back"/></svg><span data-t="top.back"></span></button>
+      <div class="site-id">
+        <span class="code" id="siteCode"></span>
+        <div>
+          <strong id="siteName"></strong>
+          <small id="siteCoord"></small>
+        </div>
+      </div>
+      <div class="clock" id="clock">
+        <small data-t="top.clock"></small>
+        <strong id="clockDate" hidden></strong>
+        <span id="clockDay"></span>
+        <label class="datefield" data-t-title="top.gotoTitle"><input type="datetime-local" id="cDate" step="3600"><small data-t="top.utc"></small></label>
+      </div>
+      <div class="top-ctl">
+        <button id="cAddCmp" class="btn" type="button"><svg class="ic"><use href="#i-plus"/></svg><span data-t="cmp.add"></span></button>
+        <button class="btn cmp-open" type="button" data-cmp-open><svg class="ic"><use href="#i-cols"/></svg><span></span></button>
+        <div class="seg" id="viewSeg" role="group"></div>
+        <div class="seg seg-mode" id="modeSeg" role="group"></div>
+        <button id="btnSimple" class="btn" type="button" aria-pressed="false" data-t="top.simple"></button>
+        <button id="btnExpert" class="btn" type="button" aria-pressed="false" data-t-title="expert.title"><svg class="ic"><use href="#i-sliders"/></svg><span data-t="expert.label"></span></button>
+        <button id="btnPanels" class="btn btn-icon" type="button" aria-pressed="false" data-t-title="top.panelsTitle"><svg class="ic"><use href="#i-cols"/></svg></button>
+        <button class="btn btn-icon" type="button" data-info data-t-title="home.infoTitle"><svg class="ic"><use href="#i-info"/></svg></button>
+      </div>
+    </header>
+
+    <div class="c-left" id="colLeft">
+      <section class="panel" id="pSummary" data-boot="1">
+        <header class="p-head"><h3 data-t="summary.title"></h3><span class="p-tag" id="sumTag"></span></header>
+        <div class="trio trio4">
+          <div class="fig fig-sun" data-t-title="summary.sunTitle"><span class="fig-l"><svg class="ic"><use href="#i-sun"/></svg><span data-t="summary.sun"></span><small class="per fig-per"></small></span><b id="sumSun"></b></div>
+          <div class="fig fig-earth"><span class="fig-l"><svg class="ic"><use href="#i-earth"/></svg><span id="sumEarthL"></span><small class="per fig-per"></small></span><b id="sumEarth"></b></div>
+          <div class="fig fig-both" data-t-title="summary.bothTitle"><span class="fig-l"><svg class="ic"><use href="#i-both"/></svg><span data-t="summary.both"></span><small class="per fig-per"></small></span><b id="sumBoth"></b></div>
+          <div class="fig fig-dark"><span class="fig-l"><svg class="ic"><use href="#i-dark"/></svg><span data-t="summary.dark"></span><small class="per fig-per"></small></span><b id="sumDark"></b></div>
+        </div>
+        <p class="sub" id="sumEnergy"></p>
+        <label class="sl sl-h" id="heightRow"><span data-t="summary.height"></span><select id="heightSel" class="sel sel-sm"></select></label>
+        <p class="sub" id="sumHeight"></p>
+      </section>
+
+      <section class="panel" id="pPower" data-boot="2" data-state="ok">
+        <header class="p-head"><h3><svg class="ic"><use href="#i-sun"/></svg><span data-t="power.title"></span></h3><span class="p-tag chip" id="pwState"></span></header>
+        <div class="readout">
+          <div class="big">
+            <small data-t="power.battery"></small>
+            <b id="pwBatt"></b>
+            <span id="pwKwh"></span>
+          </div>
+          <div class="side">
+            <div><small id="pwDisc"></small><b id="pwIn"></b></div>
+            <div><small id="pwCountL"></small><b id="pwCount"></b></div>
+          </div>
+        </div>
+        <div class="meter" id="pwMeter"><i></i></div>
+        <p class="geo" id="pwGeo"></p>
+        <div class="whatif">
+          <p class="whatif-h xp" data-t="power.scenario"></p>
+          <label class="sl xp"><span data-t="power.cap"></span><input type="range" id="slCap" min="20" max="600" step="10"><output id="outCap"></output></label>
+          <label class="sl xp"><span data-t="power.panel"></span><input type="range" id="slPanel" min="0.5" max="5" step="0.1"><output id="outPanel"></output></label>
+          <label class="sl xp"><span data-t="power.load"></span><input type="range" id="slLoad" min="0.1" max="2" step="0.05"><output id="outLoad"></output></label>
+          <label class="sl xp"><span data-t="power.unc"></span><input type="range" id="slUnc" min="0" max="50" step="5"><output id="outUnc"></output></label>
+          <p class="verdict" id="pwVerdict"></p>
+          <p class="xp-hint" data-t="expert.hint"></p>
+          <p class="sub xp" id="pwRisk" hidden></p>
+        </div>
+      </section>
+
+      <section class="panel" id="pComm" data-boot="3" data-state="ok">
+        <header class="p-head"><h3><svg class="ic"><use href="#i-earth"/></svg><span data-t="comm.title"></span></h3><span class="p-tag chip" id="cmState"></span></header>
+        <div class="readout">
+          <div class="big">
+            <small data-t="comm.margin"></small>
+            <b id="cmMargin"></b>
+            <span id="cmWhy"></span>
+          </div>
+          <div class="side">
+            <div><small id="cmCountL"></small><b id="cmCount"></b></div>
+          </div>
+        </div>
+        <p class="geo" id="cmGeo"></p>
+        <div class="whatif">
+          <label class="sl"><span data-t="comm.mask"></span><input type="range" id="slMask" min="0" max="3" step="0.1"><output id="outMask"></output></label>
+          <div class="live">
+            <div><small id="cmLiveEarthL"></small><b id="cmLivePct"></b></div>
+            <div><small id="cmLiveGapL"></small><b id="cmLiveGap"></b></div>
+          </div>
+          <p class="sub warnline" id="cmCrit" hidden></p>
+        </div>
+      </section>
+    </div>
+
+    <div class="c-right" id="colRight">
+      <section class="panel" id="pSky" data-boot="4">
+        <header class="p-head"><h3 data-t="sky.title"></h3><span class="p-tag" data-t="sky.sub"></span></header>
+        <canvas id="sky" role="img"></canvas>
+        <ul class="legend" id="skyLegend"></ul>
+      </section>
+      <section class="panel" id="pEvents" data-boot="5">
+        <header class="p-head"><h3 data-t="events.title"></h3><span class="p-tag" id="eventsSub"></span></header>
+        <ol id="feed" class="feed"></ol>
+      </section>
+    </div>
+
+    <div class="c-mid" id="colMid">
+      <div class="countdown" id="countdown" aria-live="off">
+        <div class="cd cd-sun" id="cdSun"><small id="cdSunL"></small><b id="cdSunV"></b></div>
+        <div class="cd cd-earth" id="cdEarth"><small id="cdEarthL"></small><b id="cdEarthV"></b></div>
+      </div>
+      <div class="view-tools" id="viewTools">
+        <button class="btn btn-sm" type="button" id="lookSun"><svg class="ic sun"><use href="#i-sun"/></svg><span data-t="scene.lookSun"></span></button>
+        <button class="btn btn-sm" type="button" id="lookEarth"><svg class="ic earth"><use href="#i-earth"/></svg><span data-t="scene.lookEarth"></span></button>
+        <button class="btn btn-sm" type="button" id="lookLander"><span data-t="scene.lookLander"></span></button>
+        <button class="btn btn-sm" type="button" id="btnTour"><svg class="ic"><use href="#i-play"/></svg><span id="tourBtnLabel" data-t="tour.start"></span></button>
+        <span class="view-hint" id="viewHint"></span>
+      </div>
+      <p class="view-msg" id="viewMsg" hidden></p>
+
+      <div id="compare" class="compare panel" hidden>
+        <header class="p-head"><h3 data-t="compare.title"></h3><span class="p-tag" id="cmpSub"></span></header>
+        <table>
+          <thead><tr><th></th><th data-t="compare.colFlat"></th><th></th><th data-t="compare.colTerrain"></th><th data-t="compare.colDiff"></th></tr></thead>
+          <tbody id="cmpBody"></tbody>
+        </table>
+        <p class="cmp-note" id="cmpNote"></p>
+        <p class="sub" id="cmpNote2"></p>
+      </div>
+
+      <div id="tour" class="tour panel" hidden>
+        <p class="tour-cap" id="tourCap"></p>
+        <span class="tour-step" id="tourStep"></span>
+      </div>
+
+      <div id="descent" class="descent" hidden>
+        <div class="d-alt"><small data-t="descent.alt"></small><b id="dAlt"></b></div>
+        <ol id="dLog" class="d-log"></ol>
+        <button id="btnSkip" class="btn" type="button" data-t="descent.skip"></button>
+      </div>
+
+      <div id="simple" class="simple panel" hidden>
+        <p class="simple-tag" id="simTag" hidden></p>
+        <div class="simple-trio">
+          <div class="fig-sun"><b id="simSun"></b><span><svg class="ic"><use href="#i-sun"/></svg><span data-t="simple.sun"></span></span></div>
+          <div class="fig-earth"><b id="simEarth"></b><span><svg class="ic"><use href="#i-earth"/></svg><span data-t="simple.earth"></span></span></div>
+          <div class="fig-dark"><b id="simDark"></b><span><svg class="ic"><use href="#i-dark"/></svg><span data-t="simple.dark"></span></span></div>
+        </div>
+        <p class="simple-sentence" id="simSentence"></p>
+        <p class="simple-now" id="simNow"></p>
+      </div>
+    </div>
+
+    <footer class="c-time panel" id="timebar" data-boot="6">
+      <div class="t-ctl">
+        <button id="btnPlay" class="btn btn-icon" type="button"><svg class="ic"><use id="playUse" href="#i-play"/></svg></button>
+        <div class="seg" id="speedSeg" role="group"></div>
+        <button id="btnNext" class="btn" type="button"><svg class="ic"><use href="#i-next"/></svg><span data-t="time.next"></span></button>
+        <button id="btnLanding" class="btn" type="button" data-t="time.setLanding" data-t-title="time.setLandingTitle"></button>
+        <span class="x-l" data-t="time.zoomLabel"></span>
+        <div class="seg" id="zoomSeg" role="group"></div>
+        <select id="yearSel" class="sel"></select>
+        <div class="answers" id="answers">
+          <button class="ans" id="ansCap" type="button"><small data-t="ans.cap"></small><b id="ansCapV"></b></button>
+          <button class="ans" id="ansLand" type="button"><small data-t="ans.land"></small><b id="ansLandV"></b></button>
+        </div>
+      </div>
+      <div class="t-strips">
+        <div class="t-labels" aria-hidden="true">
+          <span class="l-sun"><svg class="ic"><use href="#i-sun"/></svg><span data-t="time.rowSun"></span></span>
+          <span class="l-earth"><svg class="ic"><use href="#i-earth"/></svg><span data-t="time.rowEarth"></span></span>
+          <span class="l-both"><svg class="ic"><use href="#i-both"/></svg><span data-t="time.rowBoth"></span></span>
+          <span class="l-batt"><svg class="ic"><use href="#i-batt"/></svg><span data-t="time.rowBatt"></span></span>
+          <span class="l-land"><svg class="ic"><use href="#i-next"/></svg><span data-t="time.rowLand"></span></span>
+        </div>
+        <div class="t-track" id="track">
+          <canvas id="strips"></canvas>
+          <div class="t-landing" id="landMark"><span data-t="time.landingMark"></span></div>
+          <div class="t-tip" id="tTip" hidden></div>
+          <div class="t-cursor" id="cursor"></div>
+          <input type="range" id="slTime" min="0" max="8759" step="1" value="0">
+        </div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ============ SAHNE 4: SENARYO KARŞILAŞTIRMA (3D ve iniş sekansı olmadan) ============ -->
+  <section id="cmpScene" class="scene" hidden>
+    <header class="x-head">
+      <button id="cmpBack" class="btn" type="button"><svg class="ic"><use href="#i-back"/></svg><span id="cmpBackL"></span></button>
+      <h2 data-t="cmp.title"></h2>
+      <div class="x-ctl">
+        <span class="x-l" data-t="cmp.window"></span>
+        <div class="seg" id="cmpWin" role="group"></div>
+        <label class="check"><input type="checkbox" id="cmpDiff" checked><span data-t="cmp.diff"></span></label>
+        <button id="cmpClear" class="btn btn-sm" type="button" data-t="cmp.clear"></button>
+      </div>
+    </header>
+    <p class="x-sum" id="cmpSummary"></p>
+    <div class="x-cols" id="cmpCols"></div>
+    <p class="x-foot" id="cmpFoot"></p>
+  </section>
+
+  <!-- sabit rozet ve veri penceresi -->
+  <div id="statusbar" class="statusbar">
+    <button class="prelim" type="button" data-info data-t-title="badge.prelimTitle"><svg class="ic"><use href="#i-info"/></svg><span data-t="badge.short"></span><span id="badgeText" hidden></span></button>
+    <span class="status-r"><select id="langSel" class="sel sel-sm" hidden></select><button id="btnData" class="linkbtn" type="button" data-t="badge.data"></button></span>
+  </div>
+
+  <dialog id="dataDlg" class="dlg">
+    <header class="p-head"><h3 data-t="data.title"></h3><button id="dlgClose" class="btn btn-sm" type="button" data-t="data.close"></button></header>
+    <div class="dlg-body" id="dlgBody"></div>
+  </dialog>
+
+  <dialog id="videoDlg" class="dlg dlg-video">
+    <header class="p-head"><h3 data-t="video.title"></h3><button id="videoClose" class="btn btn-sm" type="button" data-t="data.close"></button></header>
+    <video id="introVideo" src="medya/malapert_acilis.mp4" controls playsinline preload="metadata"></video>
+    <p class="dlg-cap" data-t="video.caption"></p>
+  </dialog>
+
+  <div id="loading" class="loading"><span id="loadingMsg"></span></div>
+</div>

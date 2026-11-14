@@ -1,0 +1,49 @@
+# Ay İniş Navigatörü – tüm modelleme varsayımları (oluşturulma: 2026-11-14)
+# Kodda sabit sayı yazılmaz; değer burada değişir, kaynağı yanında durur.
+
+[ay]
+# LOLA kutup DEM'lerinin referans küresi (yükseklikler bu küreye göredir).
+yaricap_m = 1737400.0
+kaynak = "Barker vd. 2023, PSJ 4:183 – PGDA ürün 90; CRS: stereografik, küre R=1737.4 km"
+
+[efemeris]
+# Saatlik Güneş/Dünya tablosu (UTC, bitiş hariç).
+baslangic = "2026-01-01T00:00:00"
+bitis = "2029-01-01T00:00:00"
+adim_saat = 1.0
+# Ayın gövde-sabit çerçevesi. LOLA DEM'leri DE421'in MOON_ME çerçevesindedir;
+# MOON_ME_DE440_ME421, DE440 yönelimini bu çerçeveye hizalayan NAIF tanımıdır.
+cerceve = "MOON_ME_DE440_ME421"
+duzeltme = "LT+S"
+kerneller = ["naif0012.tls", "de440s.bsp", "moon_pa_de440_200625.bpc", "moon_de440_250416.tf"]
+kaynak = "NAIF genel kernel'leri (indirildi 2026-11-14): de440s.bsp, moon_pa_de440_200625.bpc, moon_de440_250416.tf, naif0012.tls"
+
+[gunes]
+# Güneş disk olarak ele alınır; yarıçap IAU nominal değeri.
+yaricap_km = 695700.0
+
+[ufuk]
+# Azimut adımı (derece). Tarama 0.5°, rota noktaları 0.25°.
+tarama_adim_derece = 0.5
+ince_adim_derece = 0.25
+# Gözlemci (panel/anten) yüksekliği, yerden metre.
+gozlemci_yukseklikleri_m = [2.0, 10.0]
+# Işın örnekleme: yakın alan piksel adımında, uzak alan geometrik artışla.
+yakin_alan_m = 10000.0
+uzak_alan_m = 300000.0
+uzak_alan_oran = 1.01
+
+[gorunurluk]
+# Dünya merkezi arazi ufkunun bu kadar derece üstündeyse iletişim "var" sayılır.
+# VARSAYIM: 0 = çıplak görüş hattı. Gerçek anten maskesi bunu yükseltir.
+dunya_min_pay_derece = 0.0
+
+[aday]
+# Aday ızgara aralığı (metre) ve en büyük eğim (derece, 80 m DEM üzerinden).
+izgara_m = 800.0
+en_buyuk_egim_derece = 8.0
+# Bölge başına önerilen nokta sayısı ve noktalar arası en az mesafe.
+bolge_basina = 5
+en_az_aralik_m = 1500.0
+# Yıllık metriklerin hesaplandığı yıl.
+metrik_yili = 2027
